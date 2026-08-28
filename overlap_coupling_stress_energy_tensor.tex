@@ -1,0 +1,230 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\title{An Overlap-Coupling Extension of the Stress--Energy Tensor:\\A First Formal Draft for Visible, Dark, and Regulator Sectors}
+\author{First Draft}
+\date{July 1, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The stress--energy tensor in general relativity compresses local energy density, momentum density, pressure, and flux into the source of spacetime curvature. This draft proposes an organizational extension: decompose the total stress--energy tensor into overlapping coupling sectors, so that matter is classified not only by its energy content but also by which interaction fields it couples to. In this view, visible matter is energy that overlaps with the electromagnetic sector, dark matter is energy that couples gravitationally but has suppressed electromagnetic overlap, and high-curvature regulator phases contribute an additional effective tensor. We introduce a coupling-indexed stress tensor $T^{(a)}_{\mu\nu}$, an overlap matrix $\Omega_{ab}$, conservation constraints, and a minimal action principle. The proposal is partly a bookkeeping framework and partly a route toward model-building; its scientific value depends on whether the overlap matrix yields new constrained predictions rather than merely renaming known sectors.
+\end{abstract}
+
+\section{Motivation}
+In standard general relativity, the geometry responds to total stress-energy:
+\begin{equation}
+    G_{\mu\nu}+\Lambda g_{\mu\nu}=\frac{8\pi G}{c^4}T_{\mu\nu}.
+\end{equation}
+This equation does not directly classify whether the source is visible, dark, radiative, vacuum-like, or emergent from a regulator phase. Those distinctions appear in the microphysical Lagrangian, not in the geometric source term.
+
+This draft asks whether it is useful to refine the source as
+\begin{equation}
+    T_{\mu\nu}^{\rm total}
+    =\sum_a T^{(a)}_{\mu\nu}
+    +\sum_{a<b}T^{(ab)}_{\mu\nu},
+    \label{eq:decomp}
+\end{equation}
+where $a,b$ label coupling sectors. The goal is not to replace the stress--energy tensor, but to extend its internal bookkeeping.
+
+\section{Sector labels}
+Let the sector set be
+\begin{equation}
+    \mathcal S=\{G,E,W,S,D,R\},
+\end{equation}
+where
+\begin{itemize}[leftmargin=2em]
+    \item $G$ denotes gravitational coupling,
+    \item $E$ denotes electromagnetic coupling,
+    \item $W$ denotes weak interaction coupling,
+    \item $S$ denotes strong interaction coupling,
+    \item $D$ denotes dark-sector coupling,
+    \item $R$ denotes high-curvature regulator coupling.
+\end{itemize}
+A physical excitation $i$ is assigned a coupling vector
+\begin{equation}
+    \bm c_i=(c_{iG},c_{iE},c_{iW},c_{iS},c_{iD},c_{iR}).
+\end{equation}
+For ordinary charged matter,
+\begin{equation}
+    c_{iG}\neq 0,\quad c_{iE}\neq 0.
+\end{equation}
+For cold dark matter,
+\begin{equation}
+    c_{iG}\neq 0,\quad c_{iE}\approx 0.
+\end{equation}
+For a regulator phase,
+\begin{equation}
+    c_{iR}\neq 0
+\end{equation}
+only above a high-curvature threshold.
+
+\section{Overlap matrix}
+Define the overlap matrix
+\begin{equation}
+    \Omega_{ab}=\sum_i n_i c_{ia}c_{ib},
+    \label{eq:overlap}
+\end{equation}
+where $n_i$ is the local number density, phase-space density, or generalized occupation weight for excitation type $i$.
+
+The diagonal entries $\Omega_{aa}$ measure sector loading. The off-diagonal entries $\Omega_{ab}$ measure overlap between sectors. For example,
+\begin{equation}
+    \Omega_{GE}\neq 0
+\end{equation}
+means that some gravitating matter also couples to electromagnetism, while
+\begin{equation}
+    \Omega_{GD}\neq 0,\qquad \Omega_{ED}\approx 0
+\end{equation}
+indicates dark gravitating matter with little electromagnetic visibility.
+
+\section{Coupling-indexed stress tensor}
+For each excitation $i$, let $T^{(i)}_{\mu\nu}$ be its stress-energy contribution. Define sector-resolved tensors
+\begin{equation}
+    T^{(a)}_{\mu\nu}=\sum_i c_{ia}^2 T^{(i)}_{\mu\nu},
+\end{equation}
+with overlap tensors
+\begin{equation}
+    T^{(ab)}_{\mu\nu}=\sum_i c_{ia}c_{ib}T^{(i)}_{\mu\nu}.
+\end{equation}
+The total gravitational source is still
+\begin{equation}
+    T^{\rm total}_{\mu\nu}=\sum_i T^{(i)}_{\mu\nu}.
+\end{equation}
+Therefore the overlap decomposition must not double-count energy. A normalized reconstruction can be written
+\begin{equation}
+    T^{\rm total}_{\mu\nu}
+    =\sum_i \frac{1}{\lVert\bm c_i\rVert^2}
+    \sum_{a,b} c_{ia}c_{ib}T^{(i)}_{\mu\nu}M^{ab},
+\end{equation}
+where $M^{ab}$ is a metric on coupling space chosen so that
+\begin{equation}
+    \frac{1}{\lVert\bm c_i\rVert^2}c_{ia}c_{ib}M^{ab}=1.
+\end{equation}
+
+\section{Action principle}
+Let the matter action be decomposed as
+\begin{equation}
+    S_{\rm matter}=\int d^4x\sqrt{-g}\,\mathcal L(\varphi_i,A_\mu,B_\mu^D,\Phi_R,g_{\mu\nu}),
+\end{equation}
+where $B_\mu^D$ is a possible dark gauge field and $\Phi_R$ is a regulator field. The total stress-energy tensor is
+\begin{equation}
+    T_{\mu\nu}= -\frac{2}{\sqrt{-g}}\frac{\delta S_{\rm matter}}{\delta g^{\mu\nu}}.
+\end{equation}
+A sector-resolved tensor can be defined by tagging Lagrangian pieces:
+\begin{equation}
+    T^{(a)}_{\mu\nu}= -\frac{2}{\sqrt{-g}}\frac{\delta S_a}{\delta g^{\mu\nu}}.
+\end{equation}
+The interaction tensor is
+\begin{equation}
+    T^{\rm int}_{\mu\nu}= -\frac{2}{\sqrt{-g}}\frac{\delta S_{\rm int}}{\delta g^{\mu\nu}}.
+\end{equation}
+Then
+\begin{equation}
+    T_{\mu\nu}=\sum_a T^{(a)}_{\mu\nu}+T^{\rm int}_{\mu\nu}.
+\end{equation}
+
+\section{Conservation law}
+The Bianchi identity requires
+\begin{equation}
+    \nabla^\mu T_{\mu\nu}=0.
+\end{equation}
+The sector-resolved version may allow exchange currents:
+\begin{equation}
+    \nabla^\mu T^{(a)}_{\mu\nu}=Q^{(a)}_\nu,
+\end{equation}
+with
+\begin{equation}
+    \sum_a Q^{(a)}_\nu+\nabla^\mu T^{\rm int}_{\mu\nu}=0.
+\end{equation}
+Thus sector energy need not be separately conserved, but total energy-momentum must be.
+
+\section{Visible and invisible mass}
+Define the electromagnetic visibility fraction
+\begin{equation}
+    \mathcal V(x)=\frac{\Omega_{GE}(x)}{\Omega_{GG}(x)+\epsilon_0},
+\end{equation}
+where $\epsilon_0$ is a small regularization constant. Regions with
+\begin{equation}
+    \mathcal V\ll 1,
+    \qquad
+    \Omega_{GG}>0,
+\end{equation}
+are gravitating but electromagnetically dim. This gives a formal version of invisible mass:
+\begin{equation}
+    \text{darkness} = \text{low electromagnetic overlap, not absence of stress-energy.}
+\end{equation}
+
+\section{Regulator sector}
+Introduce a curvature activation variable
+\begin{equation}
+    \mathcal I=\ell_R^4 R_{\alpha\beta\gamma\delta}R^{\alpha\beta\gamma\delta}.
+\end{equation}
+Let
+\begin{equation}
+    c_{iR}(x)=c_{iR}^{0}A(\mathcal I),
+\end{equation}
+where
+\begin{equation}
+    A(\mathcal I)=\frac{1}{2}\left[1+\tanh\left(\frac{\mathcal I-\mathcal I_c}{\Delta}\right)\right].
+\end{equation}
+Then high-curvature regions acquire regulator overlap:
+\begin{equation}
+    \Omega_{GR},\Omega_{RR}\neq 0.
+\end{equation}
+This connects the dark/visible coupling framework to the regulated-causal-defect black-hole framework.
+
+\section{Predictions and required novelty}
+The overlap tensor framework becomes scientifically useful only if it predicts something beyond ordinary hidden-sector bookkeeping. Candidate predictions include:
+\begin{enumerate}[leftmargin=2em]
+    \item environment-dependent dark-matter effective mass;
+    \item correlated visible--dark structure through a shared scalar field;
+    \item high-curvature activation effects in compact objects;
+    \item modified halo dynamics from spatially varying overlap matrices;
+    \item new consistency constraints from sector-exchange currents $Q^{(a)}_\nu$.
+\end{enumerate}
+
+\section{Failure modes}
+The framework fails as a research contribution if:
+\begin{enumerate}[leftmargin=2em]
+    \item $\Omega_{ab}$ is only notation with no measurable consequence;
+    \item the model violates total stress-energy conservation;
+    \item the regulator tensor is not derivable from an action or controlled effective theory;
+    \item all predictions reduce to already-known hidden-sector dark matter without clarification or compression.
+\end{enumerate}
+
+\section{Conclusion}
+The overlap-coupling stress-energy framework classifies energy by interaction visibility. It preserves the standard gravitational role of $T_{\mu\nu}$ while decomposing matter into coupling sectors. Its strongest use is as an organizing language connecting dark matter, visible matter, and high-curvature regulator phases. Its weakest point is that, without a predictive overlap dynamics, it is bookkeeping rather than new physics.
+
+\begin{thebibliography}{9}
+\bibitem{Einstein1915}
+A. Einstein,
+``Die Feldgleichungen der Gravitation,''
+Sitzungsberichte der Preussischen Akademie der Wissenschaften zu Berlin (1915).
+
+\bibitem{Cheung2010}
+C. Cheung, G. Elor, L. J. Hall, and P. Kumar,
+``Origins of Hidden Sector Dark Matter I,''
+\texttt{arXiv:1010.0022}.
+
+\bibitem{Boddy2014}
+K. K. Boddy, J. L. Feng, M. Kaplinghat, and T. M. P. Tait,
+``Self-Interacting Dark Matter from a Non-Abelian Hidden Sector,''
+\texttt{arXiv:1402.3629}.
+
+\bibitem{RovelliVidotto2024}
+C. Rovelli and F. Vidotto,
+``Planck stars, White Holes, Remnants and Planck-mass quasi-particles,''
+\texttt{arXiv:2407.09584}.
+
+\bibitem{EichhornFernandes2025}
+A. Eichhorn and P. G. S. Fernandes,
+``Regular black holes without mass-inflation instability and gravastars from modified gravity,''
+\texttt{arXiv:2508.00686}.
+\end{thebibliography}
+
+\end{document}

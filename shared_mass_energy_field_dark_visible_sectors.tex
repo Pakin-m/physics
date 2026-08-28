@@ -1,0 +1,217 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\title{A Shared Mass--Energy Field with Visible and Dark Coupling Sectors:\\A First Lagrangian Draft}
+\author{First Draft}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Dark matter is usually inferred as gravitating matter that does not significantly emit, absorb, or scatter electromagnetic radiation. This draft formulates a speculative but conventional-field-theory-compatible idea: visible matter and dark matter are not separate because one has mass and the other does not; rather, they are different coupling sectors of a shared mass--energy-generating field. Visible excitations couple both to the shared mass field and to electromagnetism, while dark excitations couple to the mass field but have zero or suppressed electromagnetic charge. We present a minimal Lagrangian, derive the stress-energy tensor, identify symmetry requirements for dark-sector stability, and state the observational constraints. The model is intentionally modest: in first form it resembles hidden-sector dark matter, but its interpretive aim is to make ``visibility'' a coupling property rather than a mass property.
+\end{abstract}
+
+\section{Motivation}
+The key intuition is:
+\begin{quote}
+Mass and visibility are not the same property. A field excitation may gravitate while failing to couple appreciably to electromagnetism.
+\end{quote}
+This statement is already compatible with standard dark-matter reasoning. The novel target of this draft is to package it into a shared mass--energy field framework in which visible and dark particles are different coupling modes of a deeper sector.
+
+\section{Related models}
+Hidden-sector dark matter models commonly introduce particles that interact weakly with the Standard Model and primarily reveal themselves gravitationally \cite{Cheung2010}. Self-interacting dark matter can arise from non-Abelian hidden sectors \cite{Boddy2014}, and dissipative hidden sectors may contain dark photons or additional forces \cite{Foot2014}. The present model is not yet a replacement for those frameworks. It is a minimal coupling-language reformulation that may later be made distinct by adding predictive structure.
+
+\section{Fields and symmetries}
+Let
+\begin{itemize}[leftmargin=2em]
+    \item $g_{\mu\nu}$ be the spacetime metric,
+    \item $A_\mu$ be the electromagnetic gauge field,
+    \item $\Phi$ be a shared mass--energy scalar field,
+    \item $\psi$ be a visible-sector fermion,
+    \item $\chi$ be a dark-sector fermion.
+\end{itemize}
+The model assumes that $\psi$ carries electromagnetic charge while $\chi$ does not:
+\begin{equation}
+    q_\psi\neq 0,
+    \qquad
+    q_\chi=0.
+\end{equation}
+A stabilizing dark symmetry may be imposed:
+\begin{equation}
+    \chi\rightarrow -\chi,
+    \qquad
+    \psi\rightarrow\psi,
+    \qquad
+    \Phi\rightarrow\Phi.
+\end{equation}
+This $\mathbb Z_2$ symmetry prevents dark matter decay into visible matter if no lighter odd states exist.
+
+\section{Action}
+The action is
+\begin{equation}
+    S=\int d^4x\sqrt{-g}\,\mathcal L,
+\end{equation}
+with
+\begin{align}
+    \mathcal L
+    &= \frac{c^4}{16\pi G}R
+    -\frac14 F_{\mu\nu}F^{\mu\nu}
+    -\frac12 g^{\mu\nu}\partial_\mu\Phi\partial_\nu\Phi
+    -V(\Phi)
+    \nonumber\\
+    &\quad
+    +\bar\psi\left(i\hbar c\gamma^\mu D_\mu-m_{\psi,0}c^2\right)\psi
+    +\bar\chi\left(i\hbar c\gamma^\mu \nabla_\mu-m_{\chi,0}c^2\right)\chi
+    \nonumber\\
+    &\quad
+    -y_\psi\Phi\bar\psi\psi
+    -y_\chi\Phi\bar\chi\chi
+    -\lambda_{\psi\chi}(\bar\psi\psi)(\bar\chi\chi).
+    \label{eq:main-lagrangian}
+\end{align}
+Here
+\begin{equation}
+    F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu,
+\end{equation}
+while
+\begin{equation}
+    D_\mu=\nabla_\mu+i\frac{q_\psi}{\hbar c}A_\mu.
+\end{equation}
+The dark field $\chi$ has no electromagnetic covariant derivative because $q_\chi=0$.
+
+\section{Effective masses}
+If $\Phi$ develops a background value
+\begin{equation}
+    \langle\Phi\rangle=v_\Phi,
+\end{equation}
+then the effective masses become
+\begin{equation}
+    m_\psi^{\rm eff}=m_{\psi,0}+\frac{y_\psi v_\Phi}{c^2},
+    \qquad
+    m_\chi^{\rm eff}=m_{\chi,0}+\frac{y_\chi v_\Phi}{c^2}.
+\end{equation}
+Thus both visible and dark sectors obtain inertia through the shared field, but only the visible sector couples directly to $A_\mu$.
+
+\section{Field equations}
+Variation with respect to $\Phi$ gives
+\begin{equation}
+    \Box\Phi-\frac{dV}{d\Phi}
+    = y_\psi\bar\psi\psi+y_\chi\bar\chi\chi.
+\end{equation}
+Variation with respect to $A_\mu$ gives Maxwell's equation
+\begin{equation}
+    \nabla_\mu F^{\mu\nu}=J^\nu_\psi,
+\end{equation}
+where
+\begin{equation}
+    J^\nu_\psi=q_\psi c\bar\psi\gamma^\nu\psi.
+\end{equation}
+There is no $J^\nu_\chi$ term unless a portal or millicharge is added.
+
+Variation with respect to the metric gives
+\begin{equation}
+    G_{\mu\nu}=\frac{8\pi G}{c^4}T^{\rm total}_{\mu\nu},
+\end{equation}
+where
+\begin{equation}
+    T^{\rm total}_{\mu\nu}=T^{\Phi}_{\mu\nu}+T^{A}_{\mu\nu}+T^{\psi}_{\mu\nu}+T^{\chi}_{\mu\nu}+T^{\rm int}_{\mu\nu}.
+\end{equation}
+The scalar contribution is
+\begin{equation}
+    T^{\Phi}_{\mu\nu}
+    =\partial_\mu\Phi\partial_\nu\Phi
+    -g_{\mu\nu}\left[\frac12(\partial\Phi)^2+V(\Phi)\right].
+\end{equation}
+
+\section{Overlap-coupling matrix}
+The coupling structure may be summarized by
+\begin{equation}
+    \mathcal C=
+    \begin{pmatrix}
+        y_\psi & q_\psi & g_\psi \\
+        y_\chi & 0      & g_\chi
+    \end{pmatrix},
+\end{equation}
+where the columns represent coupling to the mass field $\Phi$, electromagnetism $A_\mu$, and gravity $g_{\mu\nu}$. In ordinary units, gravity is universal at the stress-energy level, so $g_\psi$ and $g_\chi$ are not freely chosen charges. They indicate that both sectors contribute to $T_{\mu\nu}$.
+
+The core condition for invisible gravitating matter is
+\begin{equation}
+    y_\chi\neq 0,
+    \qquad
+    q_\chi=0,
+    \qquad
+    T^\chi_{\mu\nu}\neq 0.
+\end{equation}
+
+\section{Dark-matter phenomenology}
+The dark-sector relic abundance depends on production mechanism. If the sectors are thermally connected through the portal $\lambda_{\psi\chi}$, the relic density obeys a Boltzmann equation of the form
+\begin{equation}
+    \frac{dn_\chi}{dt}+3Hn_\chi
+    =-\langle\sigma v\rangle
+    \left(n_\chi^2-n_{\chi,{\rm eq}}^2\right).
+\end{equation}
+If the coupling is too weak for thermal equilibrium, freeze-in or gravitational production may be more appropriate.
+
+Direct detection is suppressed when
+\begin{equation}
+    \lambda_{\psi\chi}\approx 0,
+    \qquad
+    q_\chi=0,
+\end{equation}
+while gravitational effects remain through $T^\chi_{\mu\nu}$.
+
+\section{Possible new contribution}
+To become more than a relabeled hidden-sector model, the proposal needs a distinctive prediction. One route is to make $\Phi$ spatially responsive to matter density:
+\begin{equation}
+    \Box\Phi-\frac{dV}{d\Phi}=y_\psi\bar\psi\psi+y_\chi\bar\chi\chi,
+\end{equation}
+so that dark and visible mass distributions are correlated by a shared mediator. This could modify halo profiles, self-interactions, or structure formation.
+
+Another route is a density-dependent effective mass:
+\begin{equation}
+    m_\chi^{\rm eff}(x)=m_{\chi,0}+\frac{y_\chi\Phi(x)}{c^2},
+\end{equation}
+which would make dark matter respond to scalar-field environments.
+
+\section{Constraints}
+The model must satisfy:
+\begin{enumerate}[leftmargin=2em]
+    \item no large fifth force in the visible sector;
+    \item no excessive dark-radiation contribution to $N_{\rm eff}$;
+    \item consistency with galaxy rotation curves and lensing;
+    \item consistency with cosmic microwave background structure formation;
+    \item direct-detection and collider limits on portal interactions;
+    \item stability of the scalar potential $V(\Phi)$.
+\end{enumerate}
+
+\section{Conclusion}
+The shared mass--energy field framework formalizes the idea that visible and dark matter may differ by coupling structure rather than by the mere possession of mass. In minimal form it is close to hidden-sector dark matter. Its value depends on whether the shared field $\Phi$ produces a new, constrained, and testable relation between visible matter, dark matter, and gravitational structure.
+
+\begin{thebibliography}{9}
+\bibitem{Cheung2010}
+C. Cheung, G. Elor, L. J. Hall, and P. Kumar,
+``Origins of Hidden Sector Dark Matter I,''
+\texttt{arXiv:1010.0022}.
+
+\bibitem{Boddy2014}
+K. K. Boddy, J. L. Feng, M. Kaplinghat, and T. M. P. Tait,
+``Self-Interacting Dark Matter from a Non-Abelian Hidden Sector,''
+\texttt{arXiv:1402.3629}.
+
+\bibitem{Foot2014}
+R. Foot,
+``Dissipative hidden sector dark matter,''
+\texttt{arXiv:1409.7174}.
+
+\bibitem{Adler2023}
+S. L. Adler,
+``Hidden Sector Dark Matter Realized as a Twin of the Standard Model,''
+\texttt{arXiv:2308.08107}.
+\end{thebibliography}
+
+\end{document}
