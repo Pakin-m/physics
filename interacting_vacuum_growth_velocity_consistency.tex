@@ -1,0 +1,857 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\Om}{\Omega}
+\newcommand{\rhoc}{\rho_c}
+\newcommand{\rhob}{\rho_b}
+\newcommand{\rhor}{\rho_r}
+\newcommand{\V}{V}
+\newcommand{\E}{E}
+\newcommand{\lc}{\lambda}
+\newcommand{\wb}{\bar w}
+\newcommand{\rhoxb}{\bar\rho_x}
+\newcommand{\rhocb}{\bar\rho_c}
+\newcommand{\Omb}{\bar\Omega}
+
+\title{Exact Background Duality and Growth--Velocity Consistency Relations\\
+for a Constant-Coupling Interacting Vacuum Cosmology}
+\author{Author Name}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study the known geodesic interacting-vacuum model in which pressureless cold dark matter (CDM) exchanges energy with vacuum energy through
+$Q=\xi H V$, using the sign convention
+$\dot\rho_c+3H\rho_c=Q$ and $\dot V=-Q$.
+The interaction law and its background solution are not new; our purpose is to isolate exact consistency relations that make this particularly simple model sharply falsifiable.
+For $\xi\neq3$ we first exhibit the exact parameter map to a noninteracting constant-$w$ cosmology, proving that all observables depending only on the homogeneous expansion history are identical after the map
+$\bar w=-1+\xi/3$.
+We then derive a necessary-and-sufficient condition for the physical CDM density to remain nonnegative for the entire history $0<a<\infty$.
+The central result follows by defining the dimensionless energy-transfer rate per CDM Hubble time,
+$\lambda\equiv Q/(H\rho_c)$.
+For constant $\xi$, the background equations imply the exact autonomous equation
+$\lambda'=\lambda[(3-\xi)-\lambda]$, where prime denotes $\dd/\dd\ln a$.
+For geodesic transfer $Q^\mu=Q u_c^\mu$, linear CDM perturbations obey
+$f_v=f_c-\lambda$, where $f_c=\dd\ln\delta_c/\dd\ln a$ and $f_v$ is the velocity-divergence growth rate (the quantity entering redshift-space distortions in the absence of tracer velocity bias).
+Hence the measurable growth--velocity split $S\equiv f_c-f_v$ closes exactly:
+$S'=S[(3-\xi)-S]$.
+On the branch exactly background-degenerate with constant-$w$ dark energy this becomes the parameter-free differential null relation
+$S'/S+S+3\bar w=0$, together with the conserved quantity
+$a^{-3\bar w}[-3\bar w/S-1]=\mathrm{const}$.
+These relations separate a background degeneracy from a perturbative test without requiring a phenomenological growth-index ansatz.
+We discuss positivity, the resonant case $\xi=3$, baryon--CDM bias generation, weak-coupling limits, and an observational strategy based on jointly reconstructing density and velocity growth.
+\end{abstract}
+
+\section{Introduction}
+
+Interactions between dark matter and dark energy have been studied extensively as phenomenological extensions of the standard cosmological model.  A particularly economical realization treats dark energy as vacuum energy, $p_V=-V$, and permits energy exchange with pressureless cold dark matter (CDM).  If the interaction four-vector is parallel to the CDM four-velocity, $Q^\mu=Q u_c^\mu$, CDM remains geodesic and the vacuum is homogeneous on hypersurfaces comoving with CDM.  This framework and its linear perturbations are well established; see, for example, Refs.~\cite{Martinelli2019,BorgesWands2020,Kaeonikhom2023}.
+
+The simple constant-coupling choice
+\begin{equation}
+    Q=\xi H V
+    \label{eq:Qmodel}
+\end{equation}
+has likewise appeared repeatedly in the interacting-vacuum literature.  Its background densities can be integrated analytically, and the model has been constrained using combinations of CMB, BAO, supernova and redshift-space-distortion data \cite{Martinelli2019,Yang2021,Kaeonikhom2023}.  Recent DESI-era analyses have renewed interest in interacting descriptions of the dark sector and in the broader ``dark degeneracy'' between evolving and interacting dark-energy pictures \cite{Petri2026,Pan2026}.  The general existence of such a degeneracy is much older \cite{Kunz2009,Aviles2011,vonMarttens2020}.
+
+Therefore, introducing Eq.~\eqref{eq:Qmodel}, solving its two background continuity equations, or observing that structure growth can break a background degeneracy is not by itself a new research contribution.  The narrower goal of this paper is different: to exploit the algebraic simplicity of Eq.~\eqref{eq:Qmodel} until the model closes into exact, directly testable consistency relations.
+
+The main results are:
+\begin{enumerate}[leftmargin=2em]
+    \item an explicit constant-$w$ background-duality map, including its singular resonant case;
+    \item a necessary-and-sufficient global positivity theorem for the CDM density;
+    \item an autonomous logistic equation for the fractional transfer rate
+    \begin{equation}
+        \lambda(a)\equiv\frac{Q}{H\rho_c};
+    \end{equation}
+    \item an exact geodesic-perturbation identity
+    \begin{equation}
+        f_c-f_v=\lambda;
+    \end{equation}
+    \item a model-specific growth--velocity closure relation
+    \begin{equation}
+        S'=S[(3-\xi)-S],
+        \qquad S\equiv f_c-f_v;
+        \label{eq:introclosure}
+    \end{equation}
+    \item and, on the background-degenerate constant-$w$ branch, the null test
+    \begin{equation}
+        \boxed{\frac{S'}{S}+S+3\bar w=0}
+        \label{eq:intronull}
+    \end{equation}
+    together with a conserved redshift invariant.
+\end{enumerate}
+
+Equation~\eqref{eq:intronull} is useful conceptually because the two ingredients entering it are of different physical origin.  The parameter $\bar w$ describes the noninteracting constant-$w$ model that reproduces the same homogeneous expansion, whereas $S$ measures the mismatch between density growth and velocity growth in the interacting description.  A background distance fit and a perturbation-level reconstruction therefore overdetermine the same constant interaction.
+
+Throughout, we assume spatially flat general relativity and use units $c=1$.  Baryons and radiation are separately conserved.  A prime denotes $\dd/\dd N$ with $N\equiv\ln a$, unless stated otherwise.  The present scale factor is $a_0=1$.
+
+\section{Interacting-vacuum background}
+\label{sec:background}
+
+The homogeneous dark-sector equations are
+\begin{align}
+    \dot\rho_c+3H\rho_c &= Q,\label{eq:cdmcontinuity}\\
+    \dot V &= -Q,\label{eq:vaccontinuity}
+\end{align}
+with Eq.~\eqref{eq:Qmodel}.  In terms of $N=\ln a$,
+\begin{align}
+    \rho_c'+3\rho_c &= \xi V,\label{eq:cdmN}\\
+    V'&=-\xi V.\label{eq:vacN}
+\end{align}
+Radiation and baryons obey
+\begin{equation}
+    \rho_r=\rho_{r0}a^{-4},
+    \qquad
+    \rho_b=\rho_{b0}a^{-3}.
+\end{equation}
+
+Equation~\eqref{eq:vacN} gives
+\begin{equation}
+    V(a)=V_0 a^{-\xi}.
+    \label{eq:Vsolution}
+\end{equation}
+For $\xi\neq3$, Eq.~\eqref{eq:cdmN} yields
+\begin{equation}
+    \rho_c(a)
+    =\rho_{c0}a^{-3}
+    +\frac{\xi}{3-\xi}V_0\left(a^{-\xi}-a^{-3}\right).
+    \label{eq:rhocsolution}
+\end{equation}
+Equivalently,
+\begin{equation}
+    \rho_c(a)
+    = A_c a^{-3}+B_c a^{-\xi},
+    \quad
+    A_c\equiv \rho_{c0}-\frac{\xi}{3-\xi}V_0,
+    \quad
+    B_c\equiv\frac{\xi}{3-\xi}V_0.
+    \label{eq:AB}
+\end{equation}
+The Hubble rate is
+\begin{align}
+    E^2(a)\equiv\frac{H^2(a)}{H_0^2}
+    =&\;\Omega_{r0}a^{-4}+\Omega_{b0}a^{-3}
+    +\left(\Omega_{c0}-\frac{\xi}{3-\xi}\Omega_{V0}\right)a^{-3}
+    \nonumber\\
+    &+\frac{3}{3-\xi}\Omega_{V0}a^{-\xi},
+    \qquad (\xi\neq3).
+    \label{eq:Ebackground}
+\end{align}
+The expression is normalized by $E(1)=1$ when spatial flatness gives
+$\Omega_{r0}+\Omega_{b0}+\Omega_{c0}+\Omega_{V0}=1$.
+
+\subsection{The resonant case \texorpdfstring{$\xi=3$}{xi=3}}
+
+At $\xi=3$, the forcing term in Eq.~\eqref{eq:cdmN} scales as the homogeneous CDM solution, and the usual $1/(3-\xi)$ expression is replaced by a logarithm:
+\begin{align}
+    V(a)&=V_0a^{-3},\label{eq:xi3V}\\
+    \rho_c(a)&=a^{-3}\left(\rho_{c0}+3V_0\ln a\right),\label{eq:xi3rhoc}\\
+    E^2(a)&=\Omega_{r0}a^{-4}
+    +a^{-3}\left[\Omega_{b0}+\Omega_{c0}+\Omega_{V0}
+    +3\Omega_{V0}\ln a\right].
+    \label{eq:xi3E}
+\end{align}
+This resonance is mathematically regular as a solution of the differential equations, but it is physically problematic toward the past because $\rho_c$ becomes negative for sufficiently small $a$ when $V_0>0$.
+
+\section{Exact background duality with constant-\texorpdfstring{$w$}{w} dark energy}
+\label{sec:duality}
+
+The general dark degeneracy states that different decompositions of the dark sector can generate the same total energy density and therefore the same background geometry \cite{Kunz2009,Aviles2011,vonMarttens2020}.  For the constant interaction in Eq.~\eqref{eq:Qmodel}, the map is especially simple.
+
+Consider a noninteracting model with pressureless CDM density $\bar\rho_c$, a dark-energy fluid $\bar\rho_x$ with constant equation of state $\bar w$, and the same separately conserved baryon and radiation densities.  Its dark-sector densities are
+\begin{equation}
+    \bar\rho_c(a)=\bar\rho_{c0}a^{-3},
+    \qquad
+    \bar\rho_x(a)=\bar\rho_{x0}a^{-3(1+\bar w)}.
+\end{equation}
+
+\begin{theorem}[Exact constant-$w$ background duality]
+\label{thm:duality}
+For $\xi\neq3$, the interacting model \eqref{eq:cdmcontinuity}--\eqref{eq:Qmodel} has exactly the same homogeneous expansion history as a noninteracting constant-$w$ model under the parameter map
+\begin{align}
+    \boxed{\bar w=-1+\frac{\xi}{3}},\label{eq:wmap}\\
+    \boxed{\bar\rho_{x0}=\frac{3}{3-\xi}V_0},\label{eq:rhoxmap}\\
+    \boxed{\bar\rho_{c0}=\rho_{c0}-\frac{\xi}{3-\xi}V_0}.\label{eq:rhocmap}
+\end{align}
+The inverse relations are
+\begin{align}
+    V(a)&=-\bar w\,\bar\rho_x(a),\label{eq:inverseV}\\
+    \rho_c(a)&=\bar\rho_c(a)+(1+\bar w)\bar\rho_x(a).
+    \label{eq:inverseC}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:wmap} gives
+$3(1+\bar w)=\xi$, so $\bar\rho_x\propto a^{-\xi}$.
+Using Eqs.~\eqref{eq:rhoxmap} and \eqref{eq:rhocmap},
+\begin{align}
+    \bar\rho_c+\bar\rho_x
+    =&\left(\rho_{c0}-\frac{\xi}{3-\xi}V_0\right)a^{-3}
+    +\frac{3}{3-\xi}V_0a^{-\xi}\nonumber\\
+    =&\rho_c+V,
+\end{align}
+where the second line follows from Eqs.~\eqref{eq:Vsolution} and \eqref{eq:rhocsolution}.  The baryon and radiation sectors are identical in the two descriptions, hence the Friedmann equation yields the same $H(a)$.  The inverse relations follow by substituting $\bar w=-(3-\xi)/3$ into the mapped densities.
+\end{proof}
+
+\begin{corollary}[No background-only discriminator]
+\label{cor:background}
+For $\xi\neq3$, any observable that is a functional only of $H(a)$ and the same spatial geometry is exactly degenerate between the two descriptions under Eqs.~\eqref{eq:wmap}--\eqref{eq:rhocmap}.  This includes, in particular, homogeneous luminosity and angular-diameter distances, cosmic-chronometer $H(z)$, and BAO distance combinations when the same ruler calibration is assumed.
+\end{corollary}
+
+\begin{remark}
+Theorem~\ref{thm:duality} is a specialization of the established dark-degeneracy mapping, not a claim that background duality itself is new.  Its role below is to eliminate $\xi$ in favor of the constant background-dual parameter $\bar w$, allowing a direct closure relation between background and perturbation observables.
+\end{remark}
+
+The special point $\xi=3$ would correspond formally to $\bar w=0$, but the map becomes singular because the two independent powers $a^{-3}$ and $a^{-\xi}$ coalesce and generate the logarithm in Eq.~\eqref{eq:xi3rhoc}.  It must therefore be treated separately.
+
+\section{Positivity and domain of the constant-coupling model}
+\label{sec:positivity}
+
+A phenomenological interacting model should not be extrapolated beyond the domain on which its component densities remain physically meaningful.  For Eq.~\eqref{eq:Qmodel}, the positivity domain can be characterized exactly.
+
+\begin{theorem}[Global CDM positivity]
+\label{thm:positivity}
+Assume $V_0>0$ and $\rho_{c0}>0$.  The CDM density generated by Eq.~\eqref{eq:Qmodel} satisfies
+\begin{equation}
+    \rho_c(a)\ge0
+    \qquad\text{for every }a>0
+    \label{eq:globalpositive}
+\end{equation}
+if and only if
+\begin{equation}
+    \boxed{
+    0\le\xi\le
+    \frac{3\rho_{c0}}{\rho_{c0}+V_0}
+    }.
+    \label{eq:xipositivity}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $\xi\neq3$, write Eq.~\eqref{eq:rhocsolution} as Eq.~\eqref{eq:AB}.
+
+If $\xi<0$, then $B_c<0$ and $a^{-\xi}\to\infty$ as $a\to\infty$, while $a^{-3}\to0$.  Hence $\rho_c$ becomes negative at sufficiently large $a$.
+
+If $\xi>3$, then $B_c<0$ and $a^{-\xi}$ diverges faster than $a^{-3}$ as $a\to0$, so $\rho_c$ becomes negative sufficiently far in the past.
+
+At $\xi=3$, Eq.~\eqref{eq:xi3rhoc} becomes negative for sufficiently small $a$ because $\ln a\to-\infty$.
+
+It remains to consider $0\le\xi<3$.  In this interval $B_c\ge0$.  At late times the $a^{-\xi}$ term is nonnegative, while at early times the coefficient of the dominant $a^{-3}$ term must satisfy $A_c\ge0$.  This condition is
+\begin{equation}
+    \rho_{c0}-\frac{\xi}{3-\xi}V_0\ge0,
+\end{equation}
+which is algebraically equivalent to Eq.~\eqref{eq:xipositivity}.  Conversely, if Eq.~\eqref{eq:xipositivity} holds, both coefficients in Eq.~\eqref{eq:AB} are nonnegative and therefore $\rho_c(a)\ge0$ for all $a>0$.
+\end{proof}
+
+\begin{corollary}[Past-to-present positivity]
+For $0<a\le1$, negative couplings $\xi<0$ do not by themselves force a past CDM zero crossing, whereas positive couplings require Eq.~\eqref{eq:xipositivity}.  Thus a fit confined to the observed past can admit $\xi<0$ even though its constant-coupling extrapolation eventually reaches $\rho_c=0$ in the future.
+\end{corollary}
+
+For $\xi<0$, the future zero occurs when
+\begin{equation}
+    a_{\rm zero}^{\,3-\xi}
+    =\frac{(3-\xi)\rho_{c0}-\xi V_0}{-\xi V_0}.
+    \label{eq:futurezero}
+\end{equation}
+The divergence of $Q/(H\rho_c)$ at this point is not a curvature singularity by itself; it signals the breakdown of the chosen component-level phenomenology as the CDM density crosses zero.
+
+\section{Autonomous interaction-rate dynamics}
+\label{sec:lambda}
+
+The quantity most directly relevant to perturbations is not $\xi$ alone but the energy transfer normalized to the CDM density,
+\begin{equation}
+    \lambda(a)
+    \equiv\frac{Q}{H\rho_c}
+    =\xi\frac{V}{\rho_c}.
+    \label{eq:lambdadef}
+\end{equation}
+For fixed microscopic CDM particle mass, $\lambda$ can also be interpreted as the fractional change of comoving CDM particle number per e-fold of expansion induced by the interaction.
+
+Introduce the dark-sector ratio
+\begin{equation}
+    r(a)\equiv\frac{\rho_c}{V}.
+    \label{eq:rdef}
+\end{equation}
+Using Eqs.~\eqref{eq:cdmN} and \eqref{eq:vacN}, one obtains without inserting the explicit background solution
+\begin{equation}
+    r'=\xi-(3-\xi)r.
+    \label{eq:rdynamics}
+\end{equation}
+For $\xi\neq3$ its solution is
+\begin{equation}
+    r(a)=\frac{\xi}{3-\xi}
+    +\left(r_0-\frac{\xi}{3-\xi}\right)a^{\xi-3},
+    \qquad r_0\equiv\frac{\rho_{c0}}{V_0}.
+    \label{eq:rsolution}
+\end{equation}
+
+\begin{theorem}[Autonomous transfer-rate equation]
+\label{thm:logistic}
+For constant $\xi$, the normalized interaction rate in Eq.~\eqref{eq:lambdadef} satisfies
+\begin{equation}
+    \boxed{
+    \lambda'=\lambda\left[(3-\xi)-\lambda\right]
+    .}
+    \label{eq:logistic}
+\end{equation}
+This equation remains valid at the resonant value $\xi=3$, where it reduces to $\lambda'=-\lambda^2$.
+\end{theorem}
+
+\begin{proof}
+From $\lambda=\xi/r$ and Eq.~\eqref{eq:rdynamics},
+\begin{align}
+    \lambda'
+    &=-\frac{\xi r'}{r^2}
+    =-\frac{\xi}{r^2}\left[\xi-(3-\xi)r\right]\nonumber\\
+    &=-\lambda^2+(3-\xi)\lambda.
+\end{align}
+No Friedmann equation is required.
+\end{proof}
+
+For $\xi\neq3$ and $\lambda_0\neq0$, Eq.~\eqref{eq:logistic} integrates to
+\begin{equation}
+    \boxed{
+    \lambda(a)
+    =\frac{3-\xi}
+    {1+\left(\dfrac{3-\xi}{\lambda_0}-1\right)a^{-(3-\xi)}}
+    ,}
+    \qquad
+    \lambda_0=\xi\frac{V_0}{\rho_{c0}}.
+    \label{eq:lambdasolution}
+\end{equation}
+At $\xi=3$,
+\begin{equation}
+    \lambda(a)=\frac{3V_0}{\rho_{c0}+3V_0\ln a}
+    =\frac{\lambda_0}{1+\lambda_0\ln a}.
+    \label{eq:lambda3}
+\end{equation}
+
+For the globally positive nontrivial branch $0<\xi<3$, Theorem~\ref{thm:positivity} is equivalent to
+\begin{equation}
+    0<\lambda_0\le3-\xi.
+    \label{eq:lambda0bound}
+\end{equation}
+The strict inequality $\lambda_0<3-\xi$ yields an early-time matter-dominated branch with
+\begin{equation}
+    \lambda(a)\sim
+    \frac{3-\xi}{(3-\xi)/\lambda_0-1}
+    a^{3-\xi}
+    \qquad(a\to0),
+    \label{eq:lambdaearly}
+\end{equation}
+and a late-time fixed point
+\begin{equation}
+    \lambda_* =3-\xi,
+    \qquad
+    r_* =\frac{\xi}{3-\xi}.
+    \label{eq:fixedpoints}
+\end{equation}
+The boundary case $\lambda_0=3-\xi$ sits on the scaling solution for all times and therefore does not possess a conventional early CDM-dominated regime.
+
+\section{Geodesic perturbations and the growth--velocity split}
+\label{sec:perturbations}
+
+The background scalar $Q$ does not fully specify perturbations; one must choose a covariant interaction four-vector.  We adopt the standard geodesic choice
+\begin{equation}
+    Q^\mu=Q u_c^\mu,
+    \label{eq:geodesicQ}
+\end{equation}
+so that there is no momentum transfer in the CDM rest frame.  The full relativistic perturbation theory of this setup is established in Refs.~\cite{Martinelli2019,BorgesWands2020,Kaeonikhom2023}.  We quote only the ingredients needed for the exact closure relation.
+
+In synchronous gauge comoving with CDM, the vacuum perturbation and transfer perturbation are homogeneous on the CDM-comoving hypersurfaces, and the linear CDM density contrast obeys
+\begin{equation}
+    \dot\delta_c
+    =-\frac{\dot h}{2}
+    +\frac{Q}{\rho_c}\delta_c.
+    \label{eq:deltac}
+\end{equation}
+A separately conserved pressureless baryon component obeys
+\begin{equation}
+    \dot\delta_b=-\frac{\dot h}{2}
+    \label{eq:deltab}
+\end{equation}
+when baryons and CDM are initially comoving.  Hence the interaction generates a relative density mode even if $\delta_b=\delta_c$ initially:
+\begin{equation}
+    (\delta_c-\delta_b)'=\lambda\,\delta_c.
+    \label{eq:biasgeneration}
+\end{equation}
+
+Define the logarithmic CDM density-growth rate
+\begin{equation}
+    f_c\equiv\frac{\delta_c'}{\delta_c}.
+    \label{eq:fc}
+\end{equation}
+Let $\vartheta_c$ denote the scalar peculiar-expansion perturbation of the geodesic CDM flow, with the sign convention that the standard noninteracting growing mode obeys $\vartheta_c=-H f_c\delta_c$.  Equation~\eqref{eq:deltac}, or equivalently the covariant continuity equation used in Refs.~\cite{BorgesWands2020,Kaeonikhom2023}, gives
+\begin{equation}
+    \vartheta_c=-H\left(f_c-\lambda\right)\delta_c.
+    \label{eq:vartheta}
+\end{equation}
+This motivates the velocity-divergence growth rate
+\begin{equation}
+    f_v\equiv-\frac{\vartheta_c}{H\delta_c}.
+    \label{eq:fvdef}
+\end{equation}
+Therefore
+\begin{equation}
+    \boxed{f_v=f_c-\lambda.}
+    \label{eq:fvfc}
+\end{equation}
+When galaxy peculiar velocities trace the geodesic CDM velocity field with negligible velocity bias, $f_v$ is the growth combination entering the redshift-space-distortion mapping; this is the origin of the distinction between density growth and the RSD growth rate emphasized in Refs.~\cite{BorgesWands2020,Kaeonikhom2023}.
+
+\begin{remark}
+Equation~\eqref{eq:fvfc} does not state that an observed RSD likelihood directly returns $f_v$ without modeling galaxy bias, baryons, Alcock--Paczynski effects and the normalization of fluctuations.  It identifies the underlying linear velocity-growth quantity that RSD is sensitive to in the geodesic interacting-vacuum model.
+\end{remark}
+
+\section{Main result: an exact growth--velocity consistency equation}
+\label{sec:mainresult}
+
+Define the growth--velocity split
+\begin{equation}
+    S(a)\equiv f_c(a)-f_v(a).
+    \label{eq:Sdef}
+\end{equation}
+Equation~\eqref{eq:fvfc} gives the exact identity
+\begin{equation}
+    S=\lambda.
+    \label{eq:Slambda}
+\end{equation}
+The background dynamics of $\lambda$ therefore close the perturbative split without solving a second-order growth equation.
+
+\begin{theorem}[Growth--velocity closure]
+\label{thm:growthclosure}
+For the constant-coupling interacting vacuum model \eqref{eq:Qmodel} with geodesic transfer \eqref{eq:geodesicQ}, the linear growth--velocity split satisfies
+\begin{equation}
+    \boxed{
+    S'=S\left[(3-\xi)-S\right].}
+    \label{eq:Slogistic}
+\end{equation}
+For $\xi\neq3$, using the exactly background-degenerate constant-$w$ parameter $\bar w=-1+\xi/3$, this becomes
+\begin{equation}
+    \boxed{
+    S'+S^2+3\bar w\,S=0.}
+    \label{eq:Sriccati}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:Slambda} and Theorem~\ref{thm:logistic} immediately give Eq.~\eqref{eq:Slogistic}.  Equation~\eqref{eq:wmap} implies $3-\xi=-3\bar w$, which gives Eq.~\eqref{eq:Sriccati}.
+\end{proof}
+
+Equation~\eqref{eq:Sriccati} is the central consistency equation.  A background analysis that interprets the expansion as noninteracting constant-$w$ dark energy fixes $\bar w$.  Independently, perturbation observables can in principle reconstruct density growth and velocity growth.  If the same background is instead generated by the interacting vacuum model considered here, the resulting $S(a)$ cannot be arbitrary: it must solve Eq.~\eqref{eq:Sriccati}.
+
+\subsection{Differential null test}
+
+For $S\neq0$, Eq.~\eqref{eq:Sriccati} can be written
+\begin{equation}
+    \boxed{
+    \mathcal N(a)
+    \equiv
+    \frac{S'}{S}+S+3\bar w
+    =0.}
+    \label{eq:nulltest}
+\end{equation}
+Equivalently, perturbations alone reconstruct the constant coupling through
+\begin{equation}
+    \boxed{
+    \xi_{\rm pert}(a)
+    =3-S-\frac{S'}{S}.}
+    \label{eq:xireconstruct}
+\end{equation}
+The model requires $\xi_{\rm pert}$ to be independent of $a$ and equal to the background value
+\begin{equation}
+    \xi_{\rm bg}=3(1+\bar w).
+    \label{eq:xibg}
+\end{equation}
+Thus one may equivalently test
+\begin{equation}
+    \xi_{\rm pert}(a)-\xi_{\rm bg}=0.
+    \label{eq:xinull}
+\end{equation}
+
+\subsection{A conserved redshift invariant}
+
+Equation~\eqref{eq:Slogistic} also integrates exactly.  For $\xi\neq3$,
+\begin{equation}
+    \frac{3-\xi}{S}-1
+    =C\,a^{-(3-\xi)},
+    \label{eq:Ssolutionimplicit}
+\end{equation}
+where $C$ is fixed by one measurement of $S$.  Therefore
+\begin{equation}
+    \boxed{
+    \mathcal J(a)
+    \equiv
+    a^{3-\xi}\left(\frac{3-\xi}{S(a)}-1\right)
+    =\mathrm{constant}.}
+    \label{eq:Jxi}
+\end{equation}
+Using the background-dual parameter,
+\begin{equation}
+    \boxed{
+    \mathcal J_w(a)
+    \equiv
+    a^{-3\bar w}
+    \left(\frac{-3\bar w}{S(a)}-1\right)
+    =\mathrm{constant}.}
+    \label{eq:Jw}
+\end{equation}
+Unlike Eq.~\eqref{eq:nulltest}, the equality of $\mathcal J_w$ at two redshifts does not require numerically differentiating a reconstructed $S(a)$.  For redshifts $z_1$ and $z_2$,
+\begin{equation}
+    (1+z_1)^{3\bar w}
+    \left(\frac{-3\bar w}{S(z_1)}-1\right)
+    =
+    (1+z_2)^{3\bar w}
+    \left(\frac{-3\bar w}{S(z_2)}-1\right).
+    \label{eq:twoznull}
+\end{equation}
+This two-redshift form is a direct null relation for a constant coupling.
+
+\subsection{Prediction from background-dual parameters}
+
+The duality map itself predicts $S(a)$ once the background-dual constant-$w$ densities are fixed.  From Eqs.~\eqref{eq:inverseV}, \eqref{eq:inverseC} and $S=\xi V/\rho_c$,
+\begin{equation}
+    \boxed{
+    S(a)=
+    -3\bar w(1+\bar w)
+    \frac{\bar\rho_x(a)}
+    {\bar\rho_c(a)+(1+\bar w)\bar\rho_x(a)}.}
+    \label{eq:Sdualprediction}
+\end{equation}
+Here $\bar\rho_c$ denotes the \emph{dual CDM} density; separately conserved baryons are not included in the denominator because $Q$ transfers energy only to the physical CDM component.
+
+At the present epoch,
+\begin{equation}
+    S_0=
+    -3\bar w(1+\bar w)
+    \frac{\bar\Omega_{x0}}
+    {\bar\Omega_{c0}+(1+\bar w)\bar\Omega_{x0}}.
+    \label{eq:S0dual}
+\end{equation}
+Equations~\eqref{eq:Sdualprediction} and \eqref{eq:Sriccati} are equivalent ways to state the same model closure: the former is algebraic after a background fit, while the latter is differential and can be tested without explicitly using the mapped density amplitudes.
+
+\section{Weak-coupling and asymptotic limits}
+\label{sec:limits}
+
+The exact relations above admit transparent limits that are useful for data analysis.
+
+\subsection{Early-time behavior}
+
+On the globally positive branch with a standard matter era,
+$0<\lambda_0<3-\xi$, Eq.~\eqref{eq:lambdaearly} gives
+\begin{equation}
+    S(a)\propto a^{3-\xi}=a^{-3\bar w}
+    \qquad(a\to0).
+    \label{eq:NearlyS}
+\end{equation}
+For $|\xi|\ll1$, $\bar w\simeq-1$ and therefore
+\begin{equation}
+    S(a)\propto a^3.
+    \label{eq:a3}
+\end{equation}
+Thus the growth--velocity split is naturally a late-time effect even when the coupling is constant in the background law.
+
+At leading order in small $\xi$, while using the zeroth-order CDM and vacuum densities in the ratio,
+\begin{equation}
+    S(a)
+    =\xi\frac{V}{\rho_c}
+    \simeq
+    \xi\frac{V_0}{\rho_{c0}}a^3+\mathcal O(\xi^2).
+    \label{eq:weakS}
+\end{equation}
+This makes explicit why a small constant $\xi$ can produce a much larger fractional transfer rate at late times than at recombination.
+
+\subsection{Late-time scaling branch}
+
+For $0<\xi<3$ on a globally positive branch,
+\begin{equation}
+    r\longrightarrow r_*=\frac{\xi}{3-\xi},
+    \qquad
+    S\longrightarrow S_*=3-\xi=-3\bar w.
+    \label{eq:lateS}
+\end{equation}
+The physical interacting dark components then scale with the same power $a^{-\xi}$ and remain in a fixed ratio.  Their total pressure is $p_d=-V$, so the asymptotic dark-sector equation of state is
+\begin{equation}
+    w_{d,*}
+    =-\frac{V}{\rho_c+V}
+    =-1+\frac{\xi}{3}
+    =\bar w.
+    \label{eq:latew}
+\end{equation}
+The constant-$w$ duality therefore has a simple dynamical interpretation: the dual dark-energy equation of state equals the fixed-point equation of state of the interacting dark sector.
+
+\section{Baryon--CDM bias as a secondary consistency channel}
+\label{sec:bias}
+
+Although the main null test uses CDM density and velocity growth, the geodesic interaction also generates a relative baryon--CDM density mode.  Define
+\begin{equation}
+    b_{bc}(a)\equiv\frac{\delta_b}{\delta_c}.
+\end{equation}
+Using Eqs.~\eqref{eq:deltac} and \eqref{eq:deltab},
+\begin{align}
+    b_{bc}'
+    &=\frac{\delta_b'}{\delta_c}
+    -b_{bc}\frac{\delta_c'}{\delta_c}\nonumber\\
+    &=f_v-b_{bc}f_c
+    =f_c(1-b_{bc})-S.
+    \label{eq:biasODE}
+\end{align}
+If adiabatic initial conditions set $b_{bc}=1$ when $S$ is negligible, then the first departure is
+\begin{equation}
+    b_{bc}'\simeq-S.
+    \label{eq:biasinitial}
+\end{equation}
+Thus the same quantity that splits density and velocity growth also sources a baryon--CDM density bias.  This is not an independent free function in the constant-coupling model.  In a realistic analysis, however, baryonic astrophysics, galaxy bias and nonlinear evolution complicate the extraction of this effect, so Eq.~\eqref{eq:biasODE} is best regarded as a secondary consistency channel rather than the primary null test.
+
+\section{Observational implementation}
+\label{sec:observational}
+
+The exact background degeneracy implies that distance information alone cannot decide whether the expansion history is generated by the interacting vacuum model or by its constant-$w$ dual.  The discriminant must therefore involve perturbations.
+
+A conceptually clean implementation has three stages.
+
+\paragraph{1. Background reconstruction.}
+Fit homogeneous data with a constant-$w$ model, obtaining $\bar w$ and the mapped density parameters.  If the interacting-vacuum interpretation is correct, Eq.~\eqref{eq:wmap} assigns
+\begin{equation}
+    \xi_{\rm bg}=3(1+\bar w).
+\end{equation}
+The mapped amplitudes predict $S(a)$ through Eq.~\eqref{eq:Sdualprediction}.
+
+\paragraph{2. Separate density and velocity information.}
+Reconstruct a density-growth history associated with the clustering CDM sector and a velocity-divergence growth history.  In practice this would require a joint analysis of probes such as redshift-space distortions, weak lensing, clustering, CMB lensing and possibly multi-tracer information.  The exact estimator depends on the survey and bias model; this paper does not assume that $f_c$ and $f_v$ can be read directly from a single published $f\sigma_8$ point.
+
+\paragraph{3. Null consistency test.}
+Construct
+\begin{equation}
+    S=f_c-f_v.
+\end{equation}
+Then test either the local differential relation \eqref{eq:nulltest}, the reconstructed constant coupling \eqref{eq:xireconstruct}, or the finite-difference invariant \eqref{eq:twoznull}.  The last option may be statistically preferable because it avoids differentiating noisy growth reconstructions.
+
+The constant-coupling model is overconstrained: once the background-dual $\bar w$ and one value of $S$ are specified, the entire function $S(a)$ is fixed by Eq.~\eqref{eq:Sriccati}.  This is more restrictive than adopting an independent phenomenological growth index.
+
+\section{Relation to previous work and scope of the contribution}
+\label{sec:prior}
+
+It is important to separate what is established from what is being isolated here.
+
+\begin{itemize}[leftmargin=2em]
+    \item The interaction $Q\propto HV$, its analytic background densities, and constant-coupling special cases have been studied previously \cite{Martinelli2019,BorgesWands2020,Yang2021,Kaeonikhom2023}.
+    \item The general degeneracy between interacting and noninteracting dark-sector descriptions is established in Refs.~\cite{Kunz2009,Aviles2011,vonMarttens2020}.  Recent work has applied related exact background-degeneracy constructions to DESI-era data \cite{Petri2026}.
+    \item The distinction between the logarithmic density-growth rate and the velocity/RSD growth rate in interacting vacuum cosmology is explicitly discussed in Refs.~\cite{BorgesWands2020,Kaeonikhom2023}.
+\end{itemize}
+
+The contribution of the present analysis is to combine the constant-$\xi$ background dynamics and the geodesic perturbation identity into a closed model-specific set of exact relations: the global positivity theorem \eqref{eq:xipositivity}, autonomous transfer equation \eqref{eq:logistic}, growth--velocity closure \eqref{eq:Slogistic}, background--perturbation null equation \eqref{eq:nulltest}, and conserved two-redshift invariant \eqref{eq:twoznull}.  These formulas require no growth-index approximation and expose a direct route for falsifying the constant-coupling interpretation of a background that would otherwise be indistinguishable from constant-$w$ dark energy.
+
+Several limitations should be kept explicit.
+
+First, Eq.~\eqref{eq:geodesicQ} is an assumption.  A different momentum-transfer prescription changes the perturbation sector even if the same scalar $Q$ is retained.  Second, the clean relation between $f_v$ and an RSD observable assumes that tracer velocities follow the geodesic matter flow; velocity bias and nonlinear corrections must be modeled in an actual likelihood.  Third, a constant $\xi$ need not be a fundamental law and may be only a low-redshift approximation.  If $\xi=\xi(a)$, Eq.~\eqref{eq:logistic} acquires an additional term and the conserved invariant is lost.  Finally, the present work is analytical: it does not claim a new constraint from current data.
+
+\section{Generalization to a time-dependent coupling}
+\label{sec:varyingxi}
+
+The failure mode of the null test is itself informative.  Let
+\begin{equation}
+    Q=\xi(a)HV.
+    \label{eq:varyingQ}
+\end{equation}
+The ratio $r=\rho_c/V$ now obeys
+\begin{equation}
+    r'=\xi-(3-\xi)r,
+    \label{eq:rvarying}
+\end{equation}
+with $\xi=\xi(a)$, while $\lambda=\xi/r$.  Differentiation gives
+\begin{equation}
+    \lambda'
+    =\lambda\left[(3-\xi)-\lambda\right]
+    +\lambda\frac{\xi'}{\xi},
+    \qquad (\xi\neq0).
+    \label{eq:lambdaVarying}
+\end{equation}
+Hence the constant-coupling closure residual is
+\begin{equation}
+    \mathcal R_\xi(a)
+    \equiv
+    \frac{\lambda'}{\lambda}+\lambda-(3-\xi)
+    =\frac{\xi'}{\xi}.
+    \label{eq:residualvarying}
+\end{equation}
+Under the geodesic identity $S=\lambda$, a measured failure of Eq.~\eqref{eq:Slogistic} can therefore be interpreted, within this wider family, as direct evidence for a running coupling rather than merely a failure of numerical integration.
+
+If an independent background construction provides $\xi(a)$, Eq.~\eqref{eq:residualvarying} reconstructs its logarithmic running from perturbations.  Conversely, if $S(a)$ is measured, then
+\begin{equation}
+    \frac{\xi'}{\xi}
+    =\frac{S'}{S}+S-(3-\xi).
+    \label{eq:xirun}
+\end{equation}
+This extension is not background-degenerate with a constant-$w$ fluid in general, but it shows that the constant-coupling null relation is the zero-running limit of a broader reconstruction identity.
+
+\section{Conclusions}
+\label{sec:conclusion}
+
+The constant interaction $Q=\xi HV$ is too well established to be publishable merely as a new dark-sector ansatz.  Its simplicity, however, allows stronger exact statements than are usually emphasized in a toy-model presentation.
+
+For $\xi\neq3$, the homogeneous expansion is exactly dual to noninteracting constant-$w$ dark energy with
+\begin{equation}
+    \bar w=-1+\frac{\xi}{3}.
+\end{equation}
+Consequently, distance-only observables cannot separate the two descriptions.  We derived a necessary-and-sufficient global positivity bound,
+\begin{equation}
+    0\le\xi\le
+    \frac{3\rho_{c0}}{\rho_{c0}+V_0},
+\end{equation}
+which identifies the region where the constant-coupling model can be extrapolated without a negative CDM density.
+
+The key dynamical variable is the fractional energy-transfer rate
+\begin{equation}
+    \lambda=\frac{Q}{H\rho_c}.
+\end{equation}
+For constant $\xi$ it obeys the exact autonomous equation
+\begin{equation}
+    \lambda'=\lambda[(3-\xi)-\lambda].
+\end{equation}
+Geodesic linear perturbations identify this same quantity with the difference between density and velocity growth,
+\begin{equation}
+    S=f_c-f_v=\lambda.
+\end{equation}
+The model therefore predicts, without a growth-index ansatz,
+\begin{equation}
+    S'=S[(3-\xi)-S].
+\end{equation}
+Combining this with the exact background duality yields the null relation
+\begin{equation}
+    \boxed{\frac{S'}{S}+S+3\bar w=0}
+\end{equation}
+and the conserved finite-redshift invariant
+\begin{equation}
+    \boxed{
+    a^{-3\bar w}
+    \left(\frac{-3\bar w}{S}-1\right)
+    =\mathrm{constant}.}
+\end{equation}
+These equations make the constant-coupling interpretation overconstrained: the same parameter inferred from homogeneous expansion must govern the redshift evolution of the density--velocity growth split.
+
+The next step for a full observational paper is therefore specific rather than open-ended: construct a likelihood that jointly reconstructs the clustering-density growth and peculiar-velocity growth while propagating galaxy bias, baryonic effects and lensing information, and test Eqs.~\eqref{eq:nulltest} or \eqref{eq:twoznull} directly against a background-matched constant-$w$ model.  The analytical relations derived here define the target such an analysis would test.
+
+\appendix
+
+\section{Direct derivation of the background solution}
+
+For completeness, multiplying Eq.~\eqref{eq:cdmN} by $a^3$ gives
+\begin{equation}
+    \frac{\dd}{\dd N}(a^3\rho_c)=\xi V_0 a^{3-\xi}.
+\end{equation}
+For $\xi\neq3$,
+\begin{equation}
+    a^3\rho_c-\rho_{c0}
+    =\frac{\xi V_0}{3-\xi}\left(a^{3-\xi}-1\right),
+\end{equation}
+which gives Eq.~\eqref{eq:rhocsolution}.  For $\xi=3$ the right-hand side is constant and integration gives Eq.~\eqref{eq:xi3rhoc}.
+
+\section{Equivalence of positivity and the logistic fixed-point bound}
+
+For $0<\xi<3$, global positivity requires
+\begin{equation}
+    \rho_{c0}\ge\frac{\xi}{3-\xi}V_0.
+\end{equation}
+Using $\lambda_0=\xi V_0/\rho_{c0}$, this is equivalent to
+\begin{equation}
+    \lambda_0\le3-\xi.
+\end{equation}
+Hence the globally positive branch begins at or below the stable logistic fixed point.  If the inequality is strict, Eq.~\eqref{eq:lambdasolution} has a positive denominator for every $a>0$, $\lambda\to0$ as $a\to0$, and $\lambda\to3-\xi$ as $a\to\infty$.
+
+\section{Distance observables under the duality map}
+
+Because $H(a)$ is identical under Theorem~\ref{thm:duality}, the usual flat-space background distances are identical:
+\begin{align}
+    D_C(z)&=\int_0^z\frac{\dd z'}{H(z')},\\
+    D_M(z)&=D_C(z),\\
+    D_A(z)&=\frac{D_M(z)}{1+z},\\
+    D_L(z)&=(1+z)D_M(z),\\
+    D_V(z)&=\left[D_M^2(z)\frac{z}{H(z)}\right]^{1/3}.
+\end{align}
+Thus a likelihood built only from such quantities can constrain the common expansion history but cannot choose between the two dark-sector decompositions without additional assumptions or perturbation information.
+
+\begin{thebibliography}{99}
+
+\bibitem{Kunz2009}
+M.~Kunz,
+``The dark degeneracy: On the number and nature of dark components,''
+\emph{Phys. Rev. D} \textbf{80}, 123001 (2009),
+\href{https://arxiv.org/abs/astro-ph/0702615}{arXiv:astro-ph/0702615}.
+
+\bibitem{Aviles2011}
+A.~Aviles and J.~L.~Cervantes-Cota,
+``Dark degeneracy and interacting cosmic components,''
+\emph{Phys. Rev. D} \textbf{84}, 083515 (2011),
+Erratum: \emph{Phys. Rev. D} \textbf{84}, 089905 (2011),
+\href{https://arxiv.org/abs/1108.2457}{arXiv:1108.2457}.
+
+\bibitem{vonMarttens2020}
+R.~von Marttens, L.~Lombriser, M.~Kunz, V.~Marra, L.~Casarini, and J.~Alcaniz,
+``Dark degeneracy I: Dynamical or interacting dark energy?,''
+\emph{Phys. Dark Universe} \textbf{28}, 100490 (2020),
+doi:10.1016/j.dark.2020.100490,
+\href{https://arxiv.org/abs/1911.02618}{arXiv:1911.02618}.
+
+\bibitem{Martinelli2019}
+M.~Martinelli, N.~B.~Hogg, S.~Peirone, M.~Bruni, and D.~Wands,
+``Constraints on the interacting vacuum--geodesic CDM scenario,''
+\emph{Mon. Not. R. Astron. Soc.} \textbf{488}, 3423--3438 (2019),
+doi:10.1093/mnras/stz1915,
+\href{https://arxiv.org/abs/1902.10694}{arXiv:1902.10694}.
+
+\bibitem{BorgesWands2020}
+H.~A.~Borges and D.~Wands,
+``Growth of structure in interacting vacuum cosmologies,''
+\emph{Phys. Rev. D} \textbf{101}, 103519 (2020),
+doi:10.1103/PhysRevD.101.103519,
+\href{https://arxiv.org/abs/1709.08933}{arXiv:1709.08933}.
+
+\bibitem{Yang2021}
+W.~Yang, S.~Pan, L.~Arest\'e Sal\'o, and J.~de Haro,
+``Theoretical and observational bounds on some interacting vacuum energy scenarios,''
+\emph{Phys. Rev. D} \textbf{103}, 083520 (2021),
+doi:10.1103/PhysRevD.103.083520,
+\href{https://arxiv.org/abs/2104.04505}{arXiv:2104.04505}.
+
+\bibitem{Kaeonikhom2023}
+C.~Kaeonikhom, H.~Assadullahi, J.~Schewtschenko, and D.~Wands,
+``Observational constraints on interacting vacuum energy with linear interactions,''
+\emph{JCAP} \textbf{01}, 042 (2023),
+doi:10.1088/1475-7516/2023/01/042,
+\href{https://arxiv.org/abs/2210.05363}{arXiv:2210.05363}.
+
+\bibitem{Petri2026}
+V.~Petri, V.~Marra, and R.~von Marttens,
+``Dark degeneracy in DESI DR2 data: Interacting or evolving dark energy?,''
+\emph{Phys. Rev. D} \textbf{113}, 023504 (2026),
+doi:10.1103/3k93-p1n8,
+\href{https://arxiv.org/abs/2508.17955}{arXiv:2508.17955}.
+
+\bibitem{Pan2026}
+S.~Pan, S.~Paul, E.~N.~Saridakis, and W.~Yang,
+``Interacting dark energy after DESI DR2: A challenge for the $\Lambda$CDM paradigm?,''
+\emph{Phys. Rev. D} \textbf{113}, 023515 (2026),
+doi:10.1103/5y21-k39n,
+\href{https://arxiv.org/abs/2504.00994}{arXiv:2504.00994}.
+
+\end{thebibliography}
+
+\end{document}
