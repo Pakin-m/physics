@@ -155,17 +155,21 @@ where $M^{ab}$ is a metric on coupling space chosen so that
 
 
 \subsection{Exact non-double-counting partition}
-The unnormalized tensors above are useful overlap diagnostics. An exact source decomposition can be constructed when the $c_{ia}$ are interpreted as nonnegative coupling strengths. Define
+The unnormalized tensors above are useful overlap diagnostics. For an exact source decomposition, use the dimensionless normalized coupling coordinates already introduced above and define nonnegative partition strengths
 \begin{equation}
- N_i=\left(\sum_a c_{ia}\right)^2
- =\sum_a c_{ia}^2+2\sum_{a<b}c_{ia}c_{ib},
+ g_{ia}=|z_{ia}|=\frac{|c_{ia}|}{s_a}.
+\end{equation}
+Then define
+\begin{equation}
+ N_i=\left(\sum_a g_{ia}\right)^2
+ =\sum_a g_{ia}^2+2\sum_{a<b}g_{ia}g_{ib},
 \end{equation}
 for every excitation with $N_i>0$, and define
 \begin{align}
  \overline T^{(a)}_{\mu\nu}
- &=\sum_i\frac{c_{ia}^2}{N_i}T^{(i)}_{\mu\nu},\\
+ &=\sum_i\frac{g_{ia}^2}{N_i}T^{(i)}_{\mu\nu},\\
  \overline T^{(ab)}_{\mu\nu}
- &=\sum_i\frac{2c_{ia}c_{ib}}{N_i}T^{(i)}_{\mu\nu},
+ &=\sum_i\frac{2g_{ia}g_{ib}}{N_i}T^{(i)}_{\mu\nu},
  \qquad a<b.
  \label{eq:exact-overlap-partition}
 \end{align}
@@ -183,12 +187,12 @@ The normalized tensors satisfy
 \begin{proof}
 For each fixed excitation $i$, the sum of its coefficients is
 \begin{equation}
- \frac{\sum_a c_{ia}^2+2\sum_{a<b}c_{ia}c_{ib}}{N_i}=1.
+ \frac{\sum_a g_{ia}^2+2\sum_{a<b}g_{ia}g_{ib}}{N_i}=1.
 \end{equation}
 Multiplying by $T^{(i)}_{\mu\nu}$ and summing over $i$ gives Eq.~\eqref{eq:exact-overlap-reconstruction}.
 \end{proof}
 
-This construction preserves the original overlap idea while turning Eq.~\eqref{eq:decomp} into an exact partition rather than a schematic sum. Signed charges can still be retained in $\Omega_{ab}$ for interference-like diagnostics; the nonnegative strengths used in Eq.~\eqref{eq:exact-overlap-partition} serve only as partition weights.
+This construction preserves the original overlap idea while turning Eq.~\eqref{eq:decomp} into an exact partition rather than a schematic sum. The weights are now dimensionless and tied explicitly to the reference scales $s_a$. Signed charges can still be retained in $\Omega_{ab}$ for interference-like diagnostics; the nonnegative normalized strengths $g_{ia}$ used in Eq.~\eqref{eq:exact-overlap-partition} serve only as partition weights.
 
 
 \section{Action principle}
