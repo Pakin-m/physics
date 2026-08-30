@@ -15,25 +15,34 @@ Flat FRW with pressureless matter (DM) and vacuum-like dark energy (DE, $w=-1$),
 \end{align}
 and choose $Q=\xi H\rho_{\rm DE}$.
 
-\section{Background solution ($w=-1$)}
+\section{Background solution (\texorpdfstring{$w=-1$}{w=-1})}
 DE:
 \[
 \frac{d\rho_{\rm DE}}{d\ln a}=-\xi\rho_{\rm DE}\Rightarrow \rho_{\rm DE}(a)=\rho_{{\rm DE},0}a^{-\xi}.
 \]
-DM:
+For $\xi\neq3$, DM:
 \[
 \rho_{\rm DM}(a)=\rho_{{\rm DM},0}a^{-3}+\frac{\xi}{3-\xi}\rho_{{\rm DE},0}\left(a^{-\xi}-a^{-3}\right).
 \]
-Thus
+Thus, for $\xi\neq3$,
 \[
 E(z)^2=\left[\Omega_{m0}-\frac{\xi}{3-\xi}\Omega_{{\rm DE},0}\right](1+z)^3+\left[\frac{3}{3-\xi}\Omega_{{\rm DE},0}\right](1+z)^\xi+\Omega_{r0}(1+z)^4.
 \]
+At the special value $\xi=3$, the finite logarithmic limit is
+\begin{align}
+\rho_{\rm DE}(a) &= \rho_{{\rm DE},0}a^{-3},\\
+\rho_{\rm DM}(a) &= a^{-3}\left[\rho_{{\rm DM},0}+3\rho_{{\rm DE},0}\ln a\right],\\
+E(z)^2 &= (1+z)^3\left[\Omega_{m0}+\Omega_{{\rm DE},0}-3\Omega_{{\rm DE},0}\ln(1+z)\right]
++\Omega_{r0}(1+z)^4.
+\end{align}
 
 \section{Distances}
-\[
-D_C(z)=\frac{c}{H_0}\int_0^z\frac{dz'}{E(z')},\quad D_M=D_C\ (\text{flat}),
-\quad D_L=(1+z)D_M,\quad \mu=5\log_{10}(D_L/{\rm Mpc})+25.
-\]
+\begin{align*}
+D_C(z)&=\frac{c}{H_0}\int_0^z\frac{dz'}{E(z')},
+& D_M&=D_C\quad(\text{flat}),\\
+D_L&=(1+z)D_M,
+& \mu&=5\log_{10}(D_L/{\rm Mpc})+25.
+\end{align*}
 BAO isotropic distance:
 \[
 D_V(z)=\left[D_M(z)^2\frac{cz}{H(z)}\right]^{1/3}.
