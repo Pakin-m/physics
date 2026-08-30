@@ -4,6 +4,14 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{mathtools}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
 
 \title{An Overlap-Coupling Extension of the Stress--Energy Tensor:\\A First Formal Draft for Visible, Dark, and Regulator Sectors}
 \author{First Draft}
@@ -82,6 +90,45 @@ means that some gravitating matter also couples to electromagnetism, while
 \end{equation}
 indicates dark gravitating matter with little electromagnetic visibility.
 
+
+\subsection{Gram structure and normalization-independent overlap}
+To compare sectors with different conventional coupling normalizations, introduce positive reference scales $s_a$ and dimensionless coupling coordinates
+\begin{equation}
+ z_{ia}=\frac{c_{ia}}{s_a}.
+\end{equation}
+Define the scale-normalized overlap matrix
+\begin{equation}
+ \widehat\Omega_{ab}=\sum_i n_i z_{ia}z_{ib}.
+ \label{eq:normalized-overlap}
+\end{equation}
+
+\begin{theorem}[Positive-semidefinite overlap]
+If $n_i\ge0$, then $\widehat\Omega$ is symmetric positive semidefinite. Consequently,
+\begin{equation}
+ |\widehat\Omega_{ab}|^2
+ \le \widehat\Omega_{aa}\widehat\Omega_{bb}.
+ \label{eq:overlap-cs}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For every real vector $x_a$,
+\begin{equation}
+ x_a\widehat\Omega_{ab}x_b
+ =\sum_i n_i\left(\sum_a x_a z_{ia}\right)^2\ge0.
+\end{equation}
+The $2\times2$ principal minors are therefore nonnegative, which gives Eq.~\eqref{eq:overlap-cs}.
+\end{proof}
+
+Whenever the diagonal entries are nonzero, define the normalized overlap coefficient
+\begin{equation}
+ r_{ab}=\frac{\widehat\Omega_{ab}}
+ {\sqrt{\widehat\Omega_{aa}\widehat\Omega_{bb}}}.
+ \label{eq:overlap-correlation}
+\end{equation}
+Then $|r_{ab}|\le1$. Moreover, $r_{ab}$ is unchanged by independent positive rescalings $c_{ia}\mapsto\lambda_a c_{ia}$. Thus $r_{ab}$ extracts a convention-resistant geometric quantity from the raw overlap matrix even when the absolute coupling coordinates require a normalization choice.
+
+
 \section{Coupling-indexed stress tensor}
 For each excitation $i$, let $T^{(i)}_{\mu\nu}$ be its stress-energy contribution. Define sector-resolved tensors
 \begin{equation}
@@ -105,6 +152,44 @@ where $M^{ab}$ is a metric on coupling space chosen so that
 \begin{equation}
     \frac{1}{\lVert\bm c_i\rVert^2}c_{ia}c_{ib}M^{ab}=1.
 \end{equation}
+
+
+\subsection{Exact non-double-counting partition}
+The unnormalized tensors above are useful overlap diagnostics. An exact source decomposition can be constructed when the $c_{ia}$ are interpreted as nonnegative coupling strengths. Define
+\begin{equation}
+ N_i=\left(\sum_a c_{ia}\right)^2
+ =\sum_a c_{ia}^2+2\sum_{a<b}c_{ia}c_{ib},
+\end{equation}
+for every excitation with $N_i>0$, and define
+\begin{align}
+ \overline T^{(a)}_{\mu\nu}
+ &=\sum_i\frac{c_{ia}^2}{N_i}T^{(i)}_{\mu\nu},\\
+ \overline T^{(ab)}_{\mu\nu}
+ &=\sum_i\frac{2c_{ia}c_{ib}}{N_i}T^{(i)}_{\mu\nu},
+ \qquad a<b.
+ \label{eq:exact-overlap-partition}
+\end{align}
+
+\begin{theorem}[Exact overlap reconstruction]
+The normalized tensors satisfy
+\begin{equation}
+ \sum_a\overline T^{(a)}_{\mu\nu}
+ +\sum_{a<b}\overline T^{(ab)}_{\mu\nu}
+ =T^{\rm total}_{\mu\nu}.
+ \label{eq:exact-overlap-reconstruction}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For each fixed excitation $i$, the sum of its coefficients is
+\begin{equation}
+ \frac{\sum_a c_{ia}^2+2\sum_{a<b}c_{ia}c_{ib}}{N_i}=1.
+\end{equation}
+Multiplying by $T^{(i)}_{\mu\nu}$ and summing over $i$ gives Eq.~\eqref{eq:exact-overlap-reconstruction}.
+\end{proof}
+
+This construction preserves the original overlap idea while turning Eq.~\eqref{eq:decomp} into an exact partition rather than a schematic sum. Signed charges can still be retained in $\Omega_{ab}$ for interference-like diagnostics; the nonnegative strengths used in Eq.~\eqref{eq:exact-overlap-partition} serve only as partition weights.
+
 
 \section{Action principle}
 Let the matter action be decomposed as
@@ -159,6 +244,23 @@ are gravitating but electromagnetically dim. This gives a formal version of invi
     \text{darkness} = \text{low electromagnetic overlap, not absence of stress-energy.}
 \end{equation}
 
+
+\subsection{Rate-level visibility bound}
+Suppose, in a weak-coupling detector model, the electromagnetic event rate of excitation $i$ scales as $\sigma_i^{(E)}=\sigma_0 z_{iE}^2$ while the gravitational loading weight is proportional to $z_{iG}^2$. A dimensionless rate proxy is then
+\begin{equation}
+ \mathcal D_E
+ =\frac{\sum_i n_i z_{iG}^2z_{iE}^2}
+ {\sum_i n_i z_{iG}^2}.
+ \label{eq:rate-visibility}
+\end{equation}
+The amplitude-like overlap $\widehat\Omega_{GE}$ and the rate-like quantity are not identical, but Eq.~\eqref{eq:overlap-cs} supplies the universal bound
+\begin{equation}
+ \widehat\Omega_{GE}^2
+ \le\widehat\Omega_{GG}\widehat\Omega_{EE}.
+\end{equation}
+Thus a normalized overlap coefficient can be interpreted as a coupling-correlation observable, while a detector rate additionally depends on squared couplings, kinematics, thresholds, and phase space. This gives the visibility language a concrete route to measurement rather than treating $\Omega_{GE}$ alone as a detector output.
+
+
 \section{Regulator sector}
 Introduce a curvature activation variable
 \begin{equation}
@@ -177,6 +279,26 @@ Then high-curvature regions acquire regulator overlap:
     \Omega_{GR},\Omega_{RR}\neq 0.
 \end{equation}
 This connects the dark/visible coupling framework to the regulated-causal-defect black-hole framework.
+
+
+\subsection{Action-based conservation completion}
+A curvature-dependent regulator can be generated from an action rather than imposed only by the product $A(\mathcal I)\Theta_{\mu\nu}$. Introduce a scalar regulator field $\xi$ with
+\begin{equation}
+ S_R=\int d^4x\sqrt{-g}
+ \left[-\frac12(\nabla\xi)^2-U(\xi)-F(\xi)\mathcal I[g]\right].
+ \label{eq:overlap-reg-action}
+\end{equation}
+The regulator equation is
+\begin{equation}
+ \Box\xi-U'(\xi)-F'(\xi)\mathcal I=0.
+ \label{eq:overlap-reg-eom}
+\end{equation}
+For fixed local curvature, the effective potential is
+\begin{equation}
+ U_{\rm eff}(\xi;\mathcal I)=U(\xi)+F(\xi)\mathcal I.
+\end{equation}
+If the minimum of $U_{\rm eff}$ changes character near $\mathcal I_c$, the regulator overlap can switch on dynamically. Because $T^{R}_{\mu\nu}$ is obtained by metric variation of Eq.~\eqref{eq:overlap-reg-action}, diffeomorphism invariance guarantees conservation of the total stress tensor on the coupled equations of motion. The phenomenological activation function $A(\mathcal I)$ can then be understood as the coarse-grained profile of $\xi(\mathcal I)$.
+
 
 \section{Predictions and required novelty}
 The overlap tensor framework becomes scientifically useful only if it predicts something beyond ordinary hidden-sector bookkeeping. Candidate predictions include:

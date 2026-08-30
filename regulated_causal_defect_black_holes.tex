@@ -4,6 +4,14 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{mathtools}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
 
 \title{Regulated Causal Defects as Alternatives to Singular Black-Hole Endpoints:\\A First Effective-Tensor Framework}
 \author{First Draft}
@@ -142,6 +150,94 @@ with regularity condition
     \quad \text{as } r\to 0.
 \end{equation}
 
+
+\subsection{An explicit finite-curvature core solution}
+A concrete regulator profile can be exhibited analytically in geometric units $G=c=1$. Choose the mass function
+\begin{equation}
+ m(r)=\frac{Mr^3}{r^3+r_0^3}
+ \label{eq:reg-mass-profile}
+\end{equation}
+and the Schwarzschild-like gauge
+\begin{equation}
+ ds^2=-f(r)dt^2+\frac{dr^2}{f(r)}+r^2d\Omega^2,
+ \qquad
+ f(r)=1-\frac{2m(r)}{r}.
+ \label{eq:reg-explicit-metric}
+\end{equation}
+At large radius,
+\begin{equation}
+ f(r)=1-\frac{2M}{r}+O(r^{-4}),
+\end{equation}
+so the exterior approaches Schwarzschild rapidly. At small radius,
+\begin{equation}
+ m(r)=\frac{M}{r_0^3}r^3+O(r^6),
+\end{equation}
+which gives
+\begin{equation}
+ f(r)=1-\frac{r^2}{L^2}+O(r^5),
+ \qquad
+ L^2=\frac{r_0^3}{2M}.
+ \label{eq:reg-desitter-core}
+\end{equation}
+Thus the center is de Sitter-like rather than singular.
+
+\begin{theorem}[Finite central curvature]
+For the metric in Eq.~\eqref{eq:reg-explicit-metric}, the central limits of the Ricci and Kretschmann scalars are
+\begin{equation}
+ R(0)=\frac{12}{L^2}=\frac{24M}{r_0^3},
+ \qquad
+ K(0)=R_{\alpha\beta\gamma\delta}R^{\alpha\beta\gamma\delta}
+ =\frac{24}{L^4}=\frac{96M^2}{r_0^6}.
+ \label{eq:reg-curvature-limits}
+\end{equation}
+Both are finite for $r_0>0$.
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:reg-desitter-core} is the static-patch expansion of four-dimensional de Sitter space with curvature radius $L$ up to higher-order corrections. The de Sitter invariants are $R=12/L^2$ and $K=24/L^4$, yielding Eq.~\eqref{eq:reg-curvature-limits}.
+\end{proof}
+
+The effective stress tensor required by this profile follows directly from Einstein's equation. With $T^\mu{}_{\nu}=\mathrm{diag}(-\rho,p_r,p_t,p_t)$,
+\begin{align}
+ \rho(r)&=\frac{m'(r)}{4\pi r^2}
+ =\frac{3Mr_0^3}{4\pi(r^3+r_0^3)^2},\\
+ p_r(r)&=-\rho(r),\\
+ p_t(r)&=-\frac{m''(r)}{8\pi r}
+ =\frac{3Mr_0^3(2r^3-r_0^3)}{4\pi(r^3+r_0^3)^3}.
+ \label{eq:reg-explicit-stress}
+\end{align}
+At $r=0$, $p_r=p_t=-\rho$, so the core becomes isotropic and vacuum-like. Moreover,
+\begin{equation}
+ \rho+p_r=0,
+ \qquad
+ \rho+p_t
+ =\frac{9Mr_0^3r^3}{4\pi(r^3+r_0^3)^3}\ge0,
+ \label{eq:reg-nec}
+\end{equation}
+so the radial and tangential null-energy combinations are nonnegative for this particular static profile.
+
+\subsection{Critical horizon structure}
+Horizons satisfy $f(r_h)=0$, equivalently
+\begin{equation}
+ r_h^3-2Mr_h^2+r_0^3=0.
+ \label{eq:reg-horizon-cubic}
+\end{equation}
+A degenerate horizon additionally satisfies the derivative equation
+\begin{equation}
+ 3r_h^2-4Mr_h=0.
+\end{equation}
+The nonzero double root is therefore
+\begin{equation}
+ r_*=\frac{4M}{3},
+\end{equation}
+and substitution into Eq.~\eqref{eq:reg-horizon-cubic} gives
+\begin{equation}
+ M_{\rm crit}=\left(\frac{27}{32}\right)^{1/3}r_0.
+ \label{eq:reg-critical-mass}
+\end{equation}
+For $M>M_{\rm crit}$ the cubic admits the regular-black-hole two-horizon pattern; at equality the horizons merge; below it the chosen static geometry is horizonless. This supplies a concrete mathematical realization of a transition between an ultra-compact causal defect and a horizonless regulated object.
+
+
 \section{Cooldown-deadlock interpretation}
 The phrase ``cooldown deadlock'' can be translated into a dynamical energy-balance equation. Let $E_{\rm core}$ be energy stored in the regulated core. Then
 \begin{equation}
@@ -157,6 +253,21 @@ A deadlock-like state is a metastable fixed point:
     E_{\rm core}\gg \dot E_{\rm leak}\tau_{\rm dyn},
 \end{equation}
 where $\tau_{\rm dyn}$ is the collapse timescale. This differs from ordinary Hawking evaporation unless the leakage channel is stronger than the standard Hawking flux.
+
+
+\subsection{Flux form of the cooldown balance}
+In spherical symmetry the natural energy variable is the Misner--Sharp mass $m(t,r)$. In coordinates adapted to spherical shells, the radial energy flux appears directly in the Einstein equations in the schematic form
+\begin{equation}
+ \partial_t m(t,r)=-4\pi r^2 T^{r}{}_{t}+\text{coordinate/lapse factors}.
+ \label{eq:reg-misner-sharp-flux}
+\end{equation}
+Thus the cooldown-deadlock equation can be interpreted as a coarse-grained integral of a local stress-energy flux law. A metastable core corresponds to a radius $r_c$ for which the net flux across the boundary is parametrically small,
+\begin{equation}
+ |\partial_t m(t,r_c)|\ll \frac{m(t,r_c)}{\tau_{\rm dyn}},
+ \label{eq:reg-metastable-flux}
+\end{equation}
+while the interior curvature remains bounded by the regulator scale. This connects the intuitive storage/leakage picture to a quasi-local mass observable used directly in spherical general relativity.
+
 
 \section{Phenomenological signatures}
 The model should be constrained by at least four observational channels:
@@ -190,7 +301,7 @@ A. Eichhorn and P. G. S. Fernandes,
 \texttt{arXiv:2508.00686}.
 
 \bibitem{Jampolski2025}
-D. Jampolski,
+D. Jampolski and L. Rezzolla,
 ``On the formation of gravastars,''
 \texttt{arXiv:2509.15302}.
 

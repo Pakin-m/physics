@@ -148,7 +148,7 @@ Let $u^\mu$ be the future-directed four-velocity of an inertial detector, normal
 \begin{equation}
   u^2=-1.
 \end{equation}
-For any future-directed four-momentum $p^\mu$, define the detector-frame energy
+For any four-momentum $p^\mu$ with positive detector energy $\omega_u(p)=-u\cdot p>0$, define the detector-frame energy
 \begin{equation}
   \omega_u(p)=-u\cdot p
   \label{eq:detector-energy}
@@ -180,7 +180,7 @@ The shell mismatch of $p$ relative to mass $m$ and detector velocity $u$ is
 This quantity has dimensions of energy and is directly matched to finite-time energy resolution. It is observer-dependent in exactly the same controlled sense that detector energy is observer-dependent. The underlying mass-shell equation remains Lorentz invariant.
 
 \begin{proposition}[Equivalence with the exact mass shell]
-For future-directed $p$ and $m\ge 0$,
+For $p$ with $\omega_u(p)>0$ and $m\ge 0$,
 \begin{equation}
   \delta_u(p;m)=0
   \quad\Longleftrightarrow\quad
@@ -205,10 +205,37 @@ $\Omega_m^2=m^2+k_u^2$,
   &=(\Omega_m-\omega_u)(\Omega_m+\omega_u)\\
   &=-\delta_u(\Omega_m+\omega_u).
 \end{align}
-For future-directed $p$, both energies are nonnegative, and the second factor is positive except for the trivial massless zero-momentum case. Thus $p^2=-m^2$ if and only if $\delta_u=0$.
+For $\omega_u(p)>0$, both energies are nonnegative, and the second factor is positive except for the trivial massless zero-momentum case. Thus $p^2=-m^2$ if and only if $\delta_u=0$.
 \end{proof}
 
 Equation~\eqref{eq:virtuality-mismatch-relation} is the desired bridge between the invariant equation $p^2=-m^2$ and the detector's finite-time frequency mismatch. It also shows why $p^2+m^2$ alone is not the most convenient operational variable: a detector resolves frequencies, not mass-squared directly.
+
+
+\begin{proposition}[Invariant virtuality bounds]
+Let
+\begin{equation}
+ \mathcal V_m(p)=p^2+m^2.
+\end{equation}
+Whenever $\omega_u>0$, Eq.~\eqref{eq:virtuality-mismatch-relation} gives the exact formula
+\begin{equation}
+ |\delta_u|=\frac{|\mathcal V_m(p)|}{\omega_u+\Omega_m}.
+ \label{eq:virtuality-exact-ratio}
+\end{equation}
+For $m>0$ this immediately implies
+\begin{equation}
+ |\delta_u|\le\frac{|\mathcal V_m(p)|}{m}.
+ \label{eq:virtuality-upper-mismatch}
+\end{equation}
+If the protocol also restricts $\omega_u+\Omega_m\le E_{\max}$, then
+\begin{equation}
+ \frac{|\mathcal V_m(p)|}{E_{\max}}
+ \le |\delta_u|
+ \le\frac{|\mathcal V_m(p)|}{m}.
+ \label{eq:virtuality-two-sided}
+\end{equation}
+Thus invariant mass-shell virtuality and detector-frequency mismatch are quantitatively equivalent on every bounded-energy protocol domain.
+\end{proposition}
+
 
 \section{Finite-time shell resolution}
 
@@ -293,6 +320,34 @@ The Gaussian window is analytically convenient because it has no side lobes.
 A nonzero value of $\ShellRes_{\chi,T}$ away from the shell does not convert an off-shell propagator component into an asymptotic particle. It states only that a finite switching window cannot perfectly discriminate the corresponding frequency mismatch.
 \end{remark}
 
+
+\subsection{Derivation of the shell filter from a finite-time transition amplitude}
+The Fourier kernel can be obtained directly rather than postulated. Consider a comparator detector whose internal gap is tuned to the on-shell reference energy $\Omega_m(p;u)$ for a narrow momentum mode. Along an inertial trajectory, that field mode contributes a phase $e^{-i\omega_u\tau}$. The first-order transition amplitude contains
+\begin{equation}
+ \mathcal A_p(T)
+ \propto\int d\tau\,\chi_T(\tau)
+ e^{i\Omega_m\tau}e^{-i\omega_u\tau}
+ =\widehat\chi_T(-\delta_u).
+ \label{eq:shell-amplitude-derivation}
+\end{equation}
+Therefore the transition probability relative to exact resonance is
+\begin{equation}
+ \frac{|\mathcal A_p(T)|^2}{|\mathcal A_{\delta=0}(T)|^2}
+ =\frac{|\widehat\chi_T(\delta_u)|^2}{|\widehat\chi_T(0)|^2}
+ =\ShellRes_{\chi,T}.
+ \label{eq:shell-kernel-derived}
+\end{equation}
+This supplies a sufficient measurement model in which the finite-time shell-resolution factor is exactly the normalized detector transition probability for frequency mismatch.
+
+For a scaled switching family $\chi_T(\tau)=\chi(\tau/T)$, the short-time expansion of an even profile with finite second moment is
+\begin{equation}
+ \ShellRes_{\chi,T}(\delta)
+ =1-T^2\delta^2\,\mathrm{Var}_{\chi}(s)+O(T^4\delta^4),
+ \label{eq:shell-short-time-filter}
+\end{equation}
+where $s=\tau/T$ and the variance is computed with normalized weight proportional to $\chi(s)$. Thus short interaction times accept a broad mismatch range, while the curvature of the score around $\delta=0$ is controlled by the time-window variance.
+
+
 \section{Temporal persistence from spectral support}
 
 A lifetime parameter should not be inserted without specifying what persists. Let $\ket{\Psi}$ be a normalized prepared state or projected excitation. Its survival amplitude is
@@ -337,6 +392,32 @@ For an isolated stable energy eigenstate, $\Persist_\Psi(T)=1$. For a narrow uns
   \label{eq:exponential-approx}
 \end{equation}
 However, exact quantum survival is generally nonexponential at sufficiently short and long times. For this reason, the primary definition is Eq.~\eqref{eq:survival-probability}; Eq.~\eqref{eq:exponential-approx} is a controlled model approximation, not a universal law.
+
+
+\begin{proposition}[Universal short-time survival law]
+If the prepared state has finite energy variance
+\begin{equation}
+ (\Delta H)^2_\Psi
+ =\mel{\Psi}{H^2}{\Psi}-\mel{\Psi}{H}{\Psi}^2,
+\end{equation}
+then
+\begin{equation}
+ \Persist_\Psi(T)
+ =1-(\Delta H)^2_\Psi T^2+o(T^2).
+ \label{eq:zeno-survival}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Expanding $e^{-iHT}$ gives
+\begin{equation}
+ a_\Psi(T)=1-i\langle H\rangle T-\frac12\langle H^2\rangle T^2+O(T^3).
+\end{equation}
+Multiplication by the complex conjugate cancels the linear term and yields Eq.~\eqref{eq:zeno-survival}.
+\end{proof}
+
+Equation~\eqref{eq:zeno-survival} replaces an arbitrary short-time exponential by a quantity fixed by the spectral variance of the prepared excitation.
+
 
 \section{Detector accessibility}
 
@@ -459,6 +540,49 @@ For fixed $\delta_u\neq0$, the shell-resolution factor tends to zero as $T\to\in
 \end{proposition}
 
 This is the sense in which the exact shell condition emerges from arbitrarily long frequency discrimination. It is not a statement that finite-time dynamics violates energy conservation; it is a statement about the width of the measurement filter.
+
+
+\subsection{Closed-form Gaussian packet shellness}
+The packet integral is analytically solvable for a Gaussian distribution of detector-frame mismatches. Suppose the acceptance is approximately constant across the packet and
+\begin{equation}
+ \delta\sim\mathcal N(\bar\delta,\sigma_\delta^2).
+\end{equation}
+For Gaussian switching, Eq.~\eqref{eq:gaussian-kernel} gives
+\begin{equation}
+ Q_{\rm shell}(T)
+ =\mathbb E\!\left[e^{-T^2\delta^2}\right].
+\end{equation}
+Completing the square yields the exact result
+\begin{equation}
+ Q_{\rm shell}(T)
+ =\frac{1}{\sqrt{1+2\sigma_\delta^2T^2}}
+ \exp\!\left[-\frac{\bar\delta^2T^2}
+ {1+2\sigma_\delta^2T^2}\right].
+ \label{eq:gaussian-packet-shellness}
+\end{equation}
+For a centered packet, $\bar\delta=0$,
+\begin{equation}
+ Q_{\rm shell}(T)=\left(1+2\sigma_\delta^2T^2\right)^{-1/2},
+\end{equation}
+so the long-time discrimination of a packet is algebraic rather than exponential because some weight always lies arbitrarily near the shell. For short times,
+\begin{equation}
+ Q_{\rm shell}(T)
+ =1-T^2\mathbb E[\delta^2]+O(T^4\mathbb E[\delta^4]).
+ \label{eq:packet-moment-expansion}
+\end{equation}
+Thus the operational score near $T=0$ directly measures the second moment of shell mismatch.
+
+\begin{proposition}[Sufficient condition for factorization]
+Suppose the prepared state, detector acceptance, shell filter, and persistence channel are statistically independent conditional on the momentum label $p$, and suppose the survival map acts diagonally in the same resolved $p$ basis. Then the joint detection-survival probability is the momentum average of the product appearing in Eq.~\eqref{eq:operational-shellness}. If, in addition, $\Persist_\Psi(T\mid p)$ is independent of $p$ on the accepted support, then
+\begin{equation}
+ \Sop^{\rm op}_{D,T}
+ =Q_{\rm acc}\,Q_{\rm shell}\,Q_{\rm pers}.
+ \label{eq:exact-factorization-condition}
+\end{equation}
+\end{proposition}
+
+This identifies an explicit set of assumptions under which the intuitive three-factor shellness product is not merely a heuristic summary but an exact conditional-probability factorization.
+
 
 \section{Protocol-specific measurability bounds}
 

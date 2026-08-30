@@ -4,6 +4,14 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{mathtools}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
 
 \title{A Cyclic Dark-Energy Ansatz for Bounce and Recollapse Cosmology:\\A First Phenomenological Draft}
 \author{First Draft}
@@ -96,6 +104,29 @@ which gives
     \label{eq:wde}
 \end{equation}
 
+
+\subsection{Exact phase derivatives of the oscillatory ansatz}
+Define
+\begin{equation}
+ \theta(a)=\omega\ln\frac{a}{a_0}+\phi,
+ \qquad
+ D(\theta)=1+\epsilon\cos\theta.
+\end{equation}
+Then Eq.~\eqref{eq:wde} implies the exact cancellation
+\begin{equation}
+ \rho_{\rm DE}(1+w_{\rm DE})
+ =\frac{\rho_\Lambda\epsilon\omega}{3}\sin\theta.
+ \label{eq:cyclic-rhop}
+\end{equation}
+The extrema of the density occur at $\sin\theta=0$, while the largest deviation from $w=-1$ is controlled by the dimensionless product $\epsilon\omega$ divided by the positive floor $D(\theta)\ge1-\epsilon$. In particular,
+\begin{equation}
+ |1+w_{\rm DE}|
+ \le \frac{\epsilon|\omega|}{3(1-\epsilon)}.
+ \label{eq:cyclic-w-bound}
+\end{equation}
+Thus observational smallness of $|1+w|$ can be enforced by a direct algebraic bound on $(\epsilon,\omega)$ without eliminating long-period cyclic behavior.
+
+
 \section{Turnaround condition}
 A turnaround occurs at $a=a_T$ when
 \begin{equation}
@@ -122,6 +153,51 @@ A phenomenological modified equation may be written
 \end{equation}
 where $\rho_c$ is a critical density. This form is inspired by effective bounce dynamics but is used here only as a template.
 
+
+\subsection{A two-root phenomenological completion}
+The high-density factor in Eq.~\eqref{eq:lqc-like} supplies a natural bounce root. To exhibit a mathematically complete expansion--contraction cycle in the same phenomenological language, introduce an additional recollapse component
+\begin{equation}
+ \rho_R(a)=-\rho_{R0}\left(\frac{a}{a_0}\right)^q,
+ \qquad q>0,
+ \label{eq:negative-recollapse}
+\end{equation}
+inside the total density $\rho$. This is one explicit realization of the negative-energy/modified sector already allowed in the turnaround discussion. At sufficiently large $a$, the oscillatory positive dark-energy term is bounded,
+\begin{equation}
+ \rho_\Lambda(1-\epsilon)
+ \le \rho_{\rm DE}(a)
+ \le \rho_\Lambda(1+\epsilon),
+\end{equation}
+whereas $\rho_R\to-\infty$. Hence, if $H^2>0$ on an earlier expanding branch, continuity guarantees at least one finite $a_T$ at which the low-curvature Friedmann right-hand side vanishes.
+
+\begin{proposition}[Existence of a large-$a$ turnaround in the completion]
+In a flat low-curvature regime where radiation and matter have become subdominant, let
+\begin{equation}
+ F(a)=\rho_\Lambda D(\theta(a))
+ -\rho_{R0}\left(\frac{a}{a_0}\right)^q.
+\end{equation}
+If $F(a_1)>0$ for some $a_1$, then there exists $a_T>a_1$ with $F(a_T)=0$.
+\end{proposition}
+
+\begin{proof}
+$F$ is continuous and satisfies
+\begin{equation}
+ F(a)\le\rho_\Lambda(1+\epsilon)
+ -\rho_{R0}(a/a_0)^q\longrightarrow-\infty
+\end{equation}
+as $a\to\infty$. The intermediate value theorem therefore gives a zero after any point at which $F$ is positive.
+\end{proof}
+
+If Eq.~\eqref{eq:negative-recollapse} is treated as a separately conserved effective fluid, then
+\begin{equation}
+ w_R=-1-\frac{q}{3}.
+\end{equation}
+Because $\rho_R<0$, the product $\rho_R(1+w_R)=q|\rho_R|/3$ is positive. In ordinary flat GR near a simple turnaround,
+\begin{equation}
+ \dot H=-4\pi G\left(\rho+\frac{p}{c^2}\right),
+\end{equation}
+so this component contributes with the sign required for $\dot H<0$. The construction is phenomenological, but it demonstrates that the proposed cyclic dark-energy modulation can be embedded in an explicit two-root background rather than leaving the turnaround condition purely verbal.
+
+
 \section{Bounce condition}
 A bounce occurs at $a=a_B$ when
 \begin{equation}
@@ -134,6 +210,36 @@ In classical GR with flat geometry, a bounce typically requires violation of the
     \rho+\frac{p}{c^2}<0,
 \end{equation}
 unless modified-gravity or quantum-geometric corrections are included. In the modified equation \eqref{eq:lqc-like}, a bounce occurs naturally near $\rho=\rho_c$ if the correction term dominates.
+
+
+\subsection{Sign of the high-density bounce}
+For clarity set $k=0$ in Eq.~\eqref{eq:lqc-like} and assume the total effective density obeys the usual continuity equation. Differentiating
+\begin{equation}
+ H^2=\frac{8\pi G}{3}\rho\left(1-\frac{\rho}{\rho_c}\right)
+\end{equation}
+and using $\dot\rho=-3H(\rho+p/c^2)$ gives, away from the instantaneous root and by continuous extension to it,
+\begin{equation}
+ \dot H
+ =-4\pi G\left(\rho+\frac{p}{c^2}\right)
+ \left(1-2\frac{\rho}{\rho_c}\right).
+ \label{eq:lqc-hdot}
+\end{equation}
+At $\rho=\rho_c$,
+\begin{equation}
+ \dot H_B
+ =4\pi G\left(\rho_c+\frac{p_B}{c^2}\right).
+ \label{eq:bounce-sign}
+\end{equation}
+Therefore the high-density root is a genuine bounce whenever $\rho_c+p_B/c^2>0$. The effective correction reverses the sign relative to the classical Raychaudhuri term and does not require the matter sector itself to violate the null energy condition.
+
+For a time-reversal-symmetric cycle with simple roots $a_B<a_T$, the proper-time duration is
+\begin{equation}
+ T_{\rm cycle}
+ =2\int_{a_B}^{a_T}\frac{da}{aH_+(a)},
+ \label{eq:cycle-period}
+\end{equation}
+where $H_+(a)>0$ is the expanding branch. If $H^2$ has simple zeros at both endpoints, then $H\sim\sqrt{|a-a_{B,T}|}$ and the integral is locally finite at each root.
+
 
 \section{Scalar-field realization}
 Let dark energy arise from a scalar field $\varphi$ with Lagrangian
@@ -151,6 +257,61 @@ A cyclic potential may take the form
     V(\varphi)=V_0\left[1+\epsilon\cos\left(\frac{\varphi}{f}\right)\right]+V_{\rm tilt}(\varphi).
 \end{equation}
 The tilt term can generate slow evolution through repeated phases instead of exact periodic stasis.
+
+
+\subsection{Exact two-field reconstruction of the oscillatory equation of state}
+A single canonical scalar gives $\rho_\varphi+p_\varphi/c^2=\dot\varphi^2/c^2\ge0$, so the portions of Eq.~\eqref{eq:wde} with $w_{\rm DE}<-1$ require additional kinetic structure. The original cyclic potential can be retained on non-phantom portions, while the full crossing ansatz admits an exact two-field ``quintom'' reconstruction.
+
+Set $c=1$ temporarily and introduce
+\begin{equation}
+ \mathcal L_Q
+ =-\frac12(\partial\varphi)^2
+ +\frac12(\partial\psi)^2
+ -V_Q(\varphi,\psi),
+ \label{eq:quintom-L}
+\end{equation}
+where $\psi$ has the opposite kinetic sign at the effective level. In FLRW,
+\begin{align}
+ \rho_Q&=\frac12\dot\varphi^2-\frac12\dot\psi^2+V_Q,\\
+ p_Q&=\frac12\dot\varphi^2-\frac12\dot\psi^2-V_Q.
+\end{align}
+Matching $\rho_Q=\rho_{\rm DE}$ and $p_Q=w_{\rm DE}\rho_{\rm DE}$ gives
+\begin{equation}
+ \dot\varphi^2-\dot\psi^2
+ =\rho_{\rm DE}(1+w_{\rm DE})
+ =\frac{\rho_\Lambda\epsilon\omega}{3}\sin\theta,
+ \label{eq:quintom-kinetic-reconstruction}
+\end{equation}
+and
+\begin{equation}
+ V_Q(a)
+ =\frac12\rho_{\rm DE}(1-w_{\rm DE})
+ =\rho_\Lambda\left[D(\theta)-\frac{\epsilon\omega}{6}\sin\theta\right].
+ \label{eq:quintom-potential-reconstruction}
+\end{equation}
+
+\begin{proposition}[Constructive realization along a background branch]
+Let
+\begin{equation}
+ S(a)=\frac{\rho_\Lambda\epsilon\omega}{3}\sin\theta(a)
+\end{equation}
+and choose any nonnegative function $\zeta(a)$. Define
+\begin{align}
+ \dot\varphi^2&=[S]_++\zeta,\\
+ \dot\psi^2&=[-S]_++\zeta,
+\end{align}
+where $[x]_+=\max(x,0)$. Then Eq.~\eqref{eq:quintom-kinetic-reconstruction} holds identically. On any branch with $H\neq0$, the fields are reconstructed by
+\begin{equation}
+ \frac{d\varphi}{d\ln a}=\frac{\dot\varphi}{H},
+ \qquad
+ \frac{d\psi}{d\ln a}=\frac{\dot\psi}{H},
+ \label{eq:quintom-field-reconstruction}
+\end{equation}
+with $V_Q$ given parametrically by Eq.~\eqref{eq:quintom-potential-reconstruction}.
+\end{proposition}
+
+This does not by itself solve the ultraviolet stability problem of a wrong-sign effective field, but it supplies an explicit background-level field realization of the entire oscillatory $w(a)$, including repeated crossings of $w=-1$.
+
 
 \section{Connection to old-looking early galaxies}
 If early structure appears more mature than expected, a cyclic model could attempt to explain it by inherited perturbation structure or modified pre-bounce initial conditions. This is only a speculative route. A serious version must compute the primordial power spectrum,
@@ -197,8 +358,8 @@ T. Cailleteau, P. Singh, and K. Vandersloot,
 \texttt{arXiv:0907.5591}.
 
 \bibitem{Itzhaki2025}
-N. Itzhaki,
-``Instant Folded Strings, Dark Energy and a Cyclic Bouncing Cosmology,''
+N. Itzhaki, U. Peleg, and P. J. Steinhardt,
+``Instant Folded Strings, Dark Energy and a Cyclic Bouncing Universe,''
 \texttt{arXiv:2508.09745}.
 \end{thebibliography}
 

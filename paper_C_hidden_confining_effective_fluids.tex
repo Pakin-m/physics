@@ -132,6 +132,72 @@ If $B_d=0$, then $w_d=p_{\rm th}/\rho_{\rm th}$ and the stated bounds follow. In
 If the hidden sector contains only ordinary positive-energy thermal excitations and stable bound states, then it can mimic radiation or matter but not a persistent cosmological constant.
 \end{corollary}
 
+
+\subsection{Exact interpolation, acceleration threshold, and sound speed}
+The classification can be sharpened when the thermal component has an approximately constant equation of state $p_{\rm th}=w_{\rm th}\rho_{\rm th}$ with $0\le w_{\rm th}\le 1/3$. For $B_d>0$, define
+\begin{equation}
+ x(a)=\frac{\rho_{\rm th}(a)}{B_d}.
+\end{equation}
+Then the total equation of state is exactly
+\begin{equation}
+ w_d(x)=\frac{w_{\rm th}x-1}{x+1}.
+ \label{eq:hidden-wx}
+\end{equation}
+
+\begin{proposition}[Monotone vacuum interpolation]
+If the thermal component is separately conserved and $w_{\rm th}$ is constant, then
+\begin{equation}
+ x(a)=x_*\left(\frac{a}{a_*}\right)^{-3(1+w_{\rm th})}
+\end{equation}
+and
+\begin{equation}
+ \frac{dw_d}{d\ln a}
+ =-3(1+w_{\rm th})^2\frac{x}{(1+x)^2}\le0.
+ \label{eq:hidden-w-monotone}
+\end{equation}
+Thus the background equation of state evolves continuously from $w_{\rm th}$ at $x\gg1$ toward $-1$ at $x\ll1$.
+\end{proposition}
+
+\begin{proof}
+Separate conservation gives $\rho_{\rm th}\propto a^{-3(1+w_{\rm th})}$. Differentiating Eq.~\eqref{eq:hidden-wx} gives
+\begin{equation}
+ \frac{dw_d}{dx}=\frac{1+w_{\rm th}}{(1+x)^2},
+ \qquad
+ \frac{dx}{d\ln a}=-3(1+w_{\rm th})x,
+\end{equation}
+which yields Eq.~\eqref{eq:hidden-w-monotone}.
+\end{proof}
+
+The acceleration condition $\rho_d+3p_d<0$ becomes
+\begin{equation}
+ (1+3w_{\rm th})\rho_{\rm th}<2B_d.
+ \label{eq:hidden-acc-threshold}
+\end{equation}
+Hence a radiation-like thermal sector accelerates only when $B_d>\rho_{\rm th}$, while a matter-like thermal sector accelerates when $B_d>\rho_{\rm th}/2$.
+
+For constant $B_d$ and constant $w_{\rm th}$, the adiabatic background sound speed is
+\begin{equation}
+ c_a^2\equiv \frac{\dot p_d}{\dot\rho_d}
+ =w_{\rm th}c^2,
+ \label{eq:hidden-soundspeed}
+\end{equation}
+provided the vacuum offset does not fluctuate independently. Thus the background value $w_d\to-1$ does not force the perturbation sound speed to approach $-c^2$ or zero; perturbations must be specified separately.
+
+\subsection{Trace-anomaly identity}
+The same decomposition gives an exact relation to a lattice observable:
+\begin{equation}
+ \mathcal I_d(T_d)
+ \equiv \rho_d-3p_d
+ =\left(\rho_{\rm th}-3p_{\rm th}\right)+4B_d.
+ \label{eq:hidden-trace-identity}
+\end{equation}
+In a nearly conformal deconfined regime where $\rho_{\rm th}\simeq3p_{\rm th}$, the persistent offset is therefore
+\begin{equation}
+ B_d\simeq \frac14\mathcal I_d.
+\end{equation}
+More generally, lattice data for $\mathcal I_d(T)$ directly constrain how much of the effective fluid can be assigned to a vacuum-like contribution rather than thermal excitations.
+
+
 \section{Toy model}
 
 Let
@@ -177,7 +243,7 @@ This framework predicts different tests depending on the regime:
 \item \textbf{dark radiation}: constrained by $\Delta N_{\rm eff}$;
 \item \textbf{dark matter}: constrained by relic abundance, halo structure, and self-interaction cross section $\sigma/m$;
 \item \textbf{dark confinement transition}: possibly constrained by stochastic gravitational-wave backgrounds;
-\item \textbf{dark energy}: requires $w_d\approx-1$ and low sound speed/perturbation behavior compatible with cosmology.
+\item \textbf{dark energy}: requires $w_d\approx-1$ and sound-speed/perturbation behavior compatible with cosmology.
 \end{enumerate}
 
 \section{Discussion}

@@ -157,6 +157,104 @@ If $\Gamma(\mu^2)\ge\gamma_0>0$ on the support of $\rho K_D$, then
 On the support of $\rho K_D$, $e^{-T\Gamma}\le e^{-\gamma_0 T}$. Pulling this constant outside the numerator gives the result.
 \end{proof}
 
+
+\section{Laplace-transform structure and stronger inequalities}
+Normalize the detector-weighted spectral measure by
+\begin{equation}
+ d\nu(\mu^2)
+ =\frac{\rho(\mu^2)K_D(\mu^2)d\mu^2}
+ {\int_0^\infty\rho K_D\,d\mu^2}.
+ \label{eq:nu-measure}
+\end{equation}
+Then the particle-ness functional is exactly the Laplace transform of the random variable $\Gamma$ under $\nu$:
+\begin{equation}
+ \mathcal P_T=\mathbb E_\nu[e^{-T\Gamma}].
+ \label{eq:laplace-structure}
+\end{equation}
+This representation gives a hierarchy of nontrivial constraints beyond monotonicity.
+
+\begin{theorem}[Complete monotonicity]
+If all moments required below are finite, then for every integer $n\ge0$,
+\begin{equation}
+ (-1)^n\frac{d^n\mathcal P_T}{dT^n}
+ =\mathbb E_\nu[\Gamma^n e^{-T\Gamma}]\ge0.
+ \label{eq:complete-monotone}
+\end{equation}
+Hence every admissible $\mathcal P_T$ is a completely monotone function of observation time.
+\end{theorem}
+
+\begin{proof}
+Differentiate Eq.~\eqref{eq:laplace-structure} under the integral sign. Each derivative brings down a factor $-\Gamma$, and the remaining integrand is nonnegative.
+\end{proof}
+
+Define the time-tilted measure
+\begin{equation}
+ d\nu_T
+ =\frac{e^{-T\Gamma}d\nu}{\mathcal P_T}.
+\end{equation}
+The effective decay rate of the full spectral mixture is
+\begin{equation}
+ \gamma_{\rm eff}(T)
+ \equiv-\frac{d}{dT}\ln\mathcal P_T
+ =\mathbb E_{\nu_T}[\Gamma].
+ \label{eq:effective-decay-rate}
+\end{equation}
+Differentiating once more gives
+\begin{equation}
+ \frac{d\gamma_{\rm eff}}{dT}
+ =-\mathrm{Var}_{\nu_T}(\Gamma)\le0,
+ \label{eq:decay-rate-monotone}
+\end{equation}
+while
+\begin{equation}
+ \frac{d^2}{dT^2}\ln\mathcal P_T
+ =\mathrm{Var}_{\nu_T}(\Gamma)\ge0.
+ \label{eq:log-convex}
+\end{equation}
+Thus a mixture of widths generically develops a decreasing effective decay rate: the narrowest, longest-lived spectral components dominate at late observation time.
+
+\begin{corollary}[Jensen and support bounds]
+Let $\bar\Gamma=\mathbb E_\nu[\Gamma]$. Then
+\begin{equation}
+ \mathcal P_T\ge e^{-T\bar\Gamma}.
+ \label{eq:jensen-particle}
+\end{equation}
+If $\Gamma_{\min}\le\Gamma\le\Gamma_{\max}$ on the detector-weighted support, then
+\begin{equation}
+ e^{-\Gamma_{\max}T}
+ \le\mathcal P_T
+ \le e^{-\Gamma_{\min}T}.
+ \label{eq:width-sandwich}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The map $x\mapsto e^{-Tx}$ is convex, so Jensen's inequality gives Eq.~\eqref{eq:jensen-particle}. The support bounds follow pointwise before integration.
+\end{proof}
+
+When cumulants $\kappa_n$ of the detector-weighted width distribution exist,
+\begin{equation}
+ \ln\mathcal P_T
+ =\sum_{n=1}^\infty\frac{(-T)^n}{n!}\kappa_n,
+ \label{eq:cumulant-expansion}
+\end{equation}
+within its convergence domain. The first term is the mean width, the second is $+T^2\mathrm{Var}(\Gamma)/2$, and higher terms quantify non-exponential spectral heterogeneity.
+
+\subsection{Restoring absolute detector accessibility}
+The normalization in $\mathcal P_T$ intentionally conditions on detector overlap. To retain the original conditional score while also tracking absolute accessibility, define
+\begin{equation}
+ \mathcal A_D=\int_0^\infty\rho(\mu^2)K_D(\mu^2)d\mu^2
+ \label{eq:absolute-accessibility-old}
+\end{equation}
+and an unnormalized observable weight
+\begin{equation}
+ \mathcal O_T=\mathcal A_D\mathcal P_T
+ =\int_0^\infty\rho K_D e^{-T\Gamma}d\mu^2.
+ \label{eq:unnormalized-observability-old}
+\end{equation}
+Thus $\mathcal P_T$ measures conditional persistence of detector-selected spectral support, while $\mathcal O_T$ retains the absolute coupling scale. The pair $(\mathcal P_T,\mathcal A_D)$ separates persistence from accessibility without discarding either quantity.
+
+
 \section{Relation to real and virtual particles}
 
 This framework does not identify virtual particles with directly detectable particles. Virtual particles are internal terms in perturbative expansions and need not satisfy the on-shell relation $p^2=m^2$. The proposed score applies to spectral support that a detector can couple to. It therefore quantifies \emph{observability of excitation structure}, not literal existence of internal Feynman lines as particles.
