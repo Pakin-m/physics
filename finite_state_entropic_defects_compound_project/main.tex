@@ -1,0 +1,377 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\mpl}{M_{\rm Pl}}
+\newcommand{\Geff}{\mathcal G}
+\newcommand{\Ddark}{\mathcal D}
+\newcommand{\ZE}{\mathbb Z_p}
+
+\title{Finite-State Entropic Defects in Curved Spacetime:\\
+A Minimal Covariant Effective Framework with Dark-Sector Triggering}
+\author{Working research draft}
+\date{2 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formulate a deliberately minimal effective field theory motivated by a ``spacetime weather'' analogy but stripped of coordinate-dependent fluid language.  The proposed new sector is a hidden Abelian gauge theory containing a charge-$p$ Higgs field.  When an invariant environmental mass parameter changes sign, the hidden $U(1)$ is Higgsed to a residual local $\mathbb Z_p$ gauge symmetry and supports quantized flux tubes.  We call these objects \emph{entropic defects} only provisionally: their pressure is defined from a stress tensor, while a genuine thermodynamic entropy interpretation is imposed as an additional consistency target rather than assumed.  The environmental trigger contains two independently testable pieces: a Gauss--Bonnet curvature invariant and the trace of the dark-sector stress tensor.  We derive (i) the exact $\mathbb Z_p$ flux and Aharonov--Bohm selection rule, (ii) the symmetry-breaking threshold, (iii) an analytic activation radius for a Schwarzschild background, and (iv) an analytic halo threshold for an NFW profile.  We also state no-go and collision results that remove several tempting but non-novel formulations: coordinate ``wind'' is not a new field, finite-field elements cannot be ordered as pressures, matter-triggered local $U(1)$ strings already occur in the complex symmetron literature, and curvature-triggered scalarization is established.  The possible novelty is therefore narrow: a density-assisted hidden $U(1)\to\mathbb Z_p$ phase, simultaneously curvature-triggered, whose finite arithmetic survives in an exact topological observable $\exp(2\pi i n/p)$.  We give explicit falsification conditions and do not claim a microscopic theory of quantum gravity.
+\end{abstract}
+
+\section{Scope and guiding constraints}
+
+The original motivation is an analogy between gravitational systems and weather patterns: flow, pressure, vorticity, calm cores, and violent surrounding structure.  An analogy is not a theory.  A publishable construction must be coordinate invariant, possess a controlled action, recover known gravity in its domain of validity, and generate observables not introduced by definition.
+
+Three constraints therefore guide the model.
+\begin{enumerate}[leftmargin=1.7em]
+    \item The ``wind'' is not promoted to a preferred physical vector.  Flow decompositions of a spacetime congruence are useful kinematics, but a Painlev\'e--Gullstrand river velocity is coordinate dependent.
+    \item ``Entropic pressure'' is not postulated as a scalar force.  It is defined operationally from the stress tensor of a new sector.  A thermodynamic entropy interpretation is a separate hypothesis to be earned.
+    \item Periodic arithmetic enters only where it produces an invariant observable.  We use a residual $\mathbb Z_p$ gauge structure.  We do \emph{not} use finite-field multiplication, because no physical role for it is currently derived.
+\end{enumerate}
+
+The construction should be regarded as an effective field theory (EFT), not as a claim that spacetime is literally a fluid.
+
+\section{Why finite-field-valued pressure is rejected}
+
+A finite field $\mathbb F_p$ cannot be an ordered field.  This elementary obstruction matters because pressure requires an ordered real quantity.
+
+\begin{proposition}
+No finite field admits an order compatible with field addition and multiplication.
+\end{proposition}
+
+\begin{proof}
+Assume $1>0$.  Closure of an ordered field under addition implies
+\[
+\underbrace{1+\cdots+1}_{p}>0.
+\]
+In $\mathbb F_p$ the left-hand side is $0$, giving $0>0$, a contradiction.
+\end{proof}
+
+Thus $P_E\in\mathbb F_p$ is discarded.  The finite structure instead labels internal states or gauge holonomies, while energy density and pressure remain real-valued.
+
+\section{Minimal covariant model}
+
+We work in four dimensions with metric signature $(-,+,+,+)$ and natural units $\hbar=c=1$.  The action is
+\begin{equation}
+S=S_{\rm EH}+S_E+S_D+S_{\rm vis},
+\end{equation}
+with
+\begin{equation}
+S_{\rm EH}=\int \dd^4x\sqrt{-g}\,\frac{\mpl^2}{2}R,
+\end{equation}
+and an ``entropy-sector'' Abelian Higgs action
+\begin{equation}
+S_E=\int \dd^4x\sqrt{-g}\left[
+-\frac14 F_{\mu\nu}F^{\mu\nu}
+-(D_\mu H)^\ast D^\mu H
+-V_{\rm eff}(H;x)
+\right].
+\label{eq:SE}
+\end{equation}
+Here
+\begin{equation}
+D_\mu H=(\nabla_\mu-i p g_E A_\mu)H,
+\qquad p\in\mathbb Z,\quad p\ge2,
+\end{equation}
+and
+\begin{equation}
+V_{\rm eff}=m_E^2(x)|H|^2+\lambda |H|^4,
+\qquad \lambda>0.
+\label{eq:Veff}
+\end{equation}
+The invariant environmental mass is
+\begin{equation}
+\boxed{
+ m_E^2(x)=m_0^2
+ -\frac{\alpha_G}{M_G^2}\,\Geff(x)
+ -\frac{\alpha_D}{M_D^2}\,\Ddark(x)
+}
+\label{eq:meff}
+\end{equation}
+with
+\begin{equation}
+\Geff=R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}
+-4R_{\mu\nu}R^{\mu\nu}+R^2
+\end{equation}
+the Gauss--Bonnet density and
+\begin{equation}
+\Ddark\equiv- T^{(D)\mu}{}_{\mu}.
+\end{equation}
+For pressureless dark matter, $\Ddark\simeq\rho_D>0$.
+
+Equation~\eqref{eq:meff} contains two logically distinct hypotheses.  The curvature term is a higher-dimensional gravitational EFT interaction.  The dark term is a \emph{dark-selective} interaction; if it were universal over visible matter it would face strong fifth-force and equivalence-principle constraints.  A microscopic completion could generate the latter through a dark-sector conformal metric $\tilde g^{(D)}_{\mu\nu}=A^2(|H|)g_{\mu\nu}$, whose small-field expansion produces a coupling to the dark stress-tensor trace.
+
+\subsection{Environmental Higgsing}
+
+Let $s=|H|^2$.  Then
+\begin{equation}
+V_{\rm eff}(s)=m_E^2 s+\lambda s^2,
+\end{equation}
+and
+\begin{equation}
+\frac{\partial V_{\rm eff}}{\partial s}=m_E^2+2\lambda s.
+\end{equation}
+Hence
+\begin{equation}
+|H|^2_{\rm vac}=
+\begin{cases}
+0, & m_E^2\ge0,\\[1mm]
+-\dfrac{m_E^2}{2\lambda}, & m_E^2<0.
+\end{cases}
+\label{eq:vev}
+\end{equation}
+When $m_E^2<0$, a field of gauge charge $p$ condenses and leaves a local residual $\mathbb Z_p$ gauge symmetry.  This is the precise location of the periodic arithmetic.
+
+The activation criterion is therefore
+\begin{equation}
+\boxed{
+\frac{\alpha_G}{M_G^2}\Geff
++\frac{\alpha_D}{M_D^2}\Ddark
+>m_0^2.
+}
+\label{eq:activation}
+\end{equation}
+This is not yet a defect-formation theorem: it determines where the defect-supporting phase exists.  Actual nucleation also depends on history and boundary conditions.
+
+\section{Finite arithmetic as an observable: flux and linking phase}
+
+Consider a straight finite-energy vortex with winding $n\in\mathbb Z$.  Far from its core,
+\begin{equation}
+H\longrightarrow \frac{v}{\sqrt2}e^{in\varphi},
+\end{equation}
+where $v^2=-m_E^2/\lambda$ in an approximately homogeneous broken region.  Finite energy requires $D_\mu H\to0$ around a large loop $C$.  Therefore
+\begin{equation}
+ p g_E\oint_C A_\mu\dd x^\mu=2\pi n,
+\end{equation}
+so the hidden magnetic flux is
+\begin{equation}
+\boxed{
+\Phi_E(n)=\oint_C A_\mu\dd x^\mu
+=\frac{2\pi n}{p g_E}.
+}
+\label{eq:flux}
+\end{equation}
+A unit-charge hidden probe acquires the Aharonov--Bohm phase
+\begin{equation}
+\boxed{
+\exp\left(i g_E\Phi_E(n)\right)
+=\exp\left(\frac{2\pi i n}{p}\right).
+}
+\label{eq:AB}
+\end{equation}
+Consequently
+\begin{equation}
+\mathcal A_{n+p}=\mathcal A_n
+\end{equation}
+for observables that depend only on the discrete holonomy.  This is an exact, non-decorative appearance of periodic arithmetic.
+
+At energies below the Higgs and gauge masses, the topological sector is represented by a $\mathbb Z_p$ BF theory after conventional field rescalings,
+\begin{equation}
+S_{\rm BF}=\frac{p}{2\pi}\int B\wedge \dd A,
+\label{eq:BF}
+\end{equation}
+which encodes the mutual phase between line and surface operators.  This low-energy representation is standard; it is not itself a novelty claim \citep{KapustinSeiberg2014,GaiottoEtAl2015}.
+
+\section{Entropic pressure is derived from stress, not imposed}
+
+The stress tensor of Eq.~\eqref{eq:SE} is
+\begin{align}
+T^{(E)}_{\mu\nu}={}&F_{\mu\alpha}F_\nu{}^\alpha
+-\frac14 g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}
++(D_\mu H)^\ast D_\nu H+(D_\nu H)^\ast D_\mu H\nonumber\\
+&-g_{\mu\nu}\left[(D_\alpha H)^\ast D^\alpha H+V_{\rm eff}\right].
+\end{align}
+For an observer with four-velocity $u^\mu$, define
+\begin{equation}
+h_{\mu\nu}=g_{\mu\nu}+u_\mu u_\nu,
+\end{equation}
+\begin{equation}
+\boxed{
+\rho_E=T^{(E)}_{\mu\nu}u^\mu u^\nu,
+\qquad
+P_E=\frac13 h^{\mu\nu}T^{(E)}_{\mu\nu}.
+}
+\label{eq:pressure}
+\end{equation}
+Equation~\eqref{eq:pressure} is the only quantity in this paper called bulk entropic pressure.  It is real, local, observer-dependent in the standard relativistic fluid sense, and calculable once a solution is specified.
+
+The original ``low-pressure eye'' intuition becomes a test rather than an axiom:
+\begin{equation}
+P_E(r=0)<P_E(r\gg \xi_E)?
+\label{eq:pressuretest}
+\end{equation}
+For an Abelian-Higgs vortex this inequality is not automatic because scalar potential, gradient, and gauge-field stresses compete.  A numerical vortex solution is therefore a necessary next calculation.
+
+\section{Analytic strong-curvature activation around Schwarzschild}
+
+Curvature-induced scalarization is already established in other scalar theories \citep{DonevaYazadjiev2018}; the calculation here only establishes the threshold scaling of the present model.
+
+For Schwarzschild in geometrized units $G=c=1$,
+\begin{equation}
+\Geff=\frac{48M^2}{r^6}.
+\end{equation}
+Ignoring the dark term, the activation surface $m_E^2=0$ obeys
+\begin{equation}
+m_0^2=\frac{48\alpha_G M^2}{M_G^2 r_G^6}.
+\end{equation}
+Therefore
+\begin{equation}
+\boxed{
+r_G=
+\left(
+\frac{48\alpha_G M^2}{m_0^2M_G^2}
+\right)^{1/6}.
+}
+\label{eq:rG}
+\end{equation}
+The scaling
+\begin{equation}
+r_G\propto M^{1/3}
+\end{equation}
+is a direct consequence of a quadratic curvature invariant.
+
+For activation outside the Schwarzschild horizon $r_H=2M$, one needs
+\begin{equation}
+r_G>2M,
+\end{equation}
+which is equivalent to
+\begin{equation}
+\boxed{
+m_0^2M_G^2M^4<\frac{3}{4}\alpha_G.}
+\label{eq:outside}
+\end{equation}
+This inequality is a useful kill criterion: for a proposed parameter set it immediately determines whether the curvature-triggered phase is externally accessible or hidden behind the horizon.
+
+The EFT expansion also requires that neglected higher-curvature operators remain suppressed.  A sufficient schematic condition is
+\begin{equation}
+\frac{|\Geff|}{M_G^4}\ll1
+\end{equation}
+at the activation surface.  Combining with $|\Geff|\sim m_0^2M_G^2/\alpha_G$ gives
+\begin{equation}
+\frac{m_0^2}{\alpha_G M_G^2}\ll1.
+\label{eq:EFTcontrol}
+\end{equation}
+Thus activation can occur inside the EFT regime if $m_0\ll \sqrt{\alpha_G}M_G$.
+
+\section{Dark-halo activation from observable density profiles}
+
+The dark-selective term is phenomenologically more directly connected to the user's original suggestion that hidden mass could predict where defects become possible.  In a weak-curvature halo, Eq.~\eqref{eq:activation} reduces to
+\begin{equation}
+\Ddark(r)>\rho_c,
+\qquad
+\boxed{
+\rho_c\equiv\frac{m_0^2M_D^2}{\alpha_D}.
+}
+\label{eq:rhoc}
+\end{equation}
+For nonrelativistic dark matter $\Ddark\simeq\rho_D$.
+
+Take an NFW profile
+\begin{equation}
+\rho_D(r)=\frac{\rho_s}{x(1+x)^2},
+\qquad x\equiv\frac{r}{r_s}.
+\end{equation}
+The activation radius $r_c=r_sx_c$ satisfies
+\begin{equation}
+\frac{\rho_s}{x_c(1+x_c)^2}=\rho_c,
+\end{equation}
+so
+\begin{equation}
+\boxed{
+x_c(1+x_c)^2=\frac{\rho_s}{\rho_c}.}
+\label{eq:nfwthreshold}
+\end{equation}
+For each halo, $(\rho_s,r_s)$ may be inferred from dynamical or lensing analyses.  A universal parameter $\rho_c$ then predicts the radius inside which the discrete Higgs phase is supported.  The model is falsified if a single universal parameter set cannot consistently describe the chosen class of systems once a concrete observable of the defect sector is specified.
+
+Equation~\eqref{eq:nfwthreshold} predicts an \emph{eligible region}, not a deterministic number of strings.  Defect abundance depends on phase-transition history, correlation length, and annihilation.  Claiming otherwise would overstate the theory.
+
+\section{What is actually different from nearby literature?}
+
+The individual ingredients have substantial precedent:
+\begin{itemize}[leftmargin=1.5em]
+    \item Einstein dynamics has a well-known thermodynamic interpretation based on local horizon entropy \citep{Jacobson1995,ElingGuedensJacobson2006}.
+    \item The membrane paradigm gives black-hole horizons fluid-like stress and transport properties \citep{ParikhWilczek1998}.
+    \item Density-dependent scalar symmetry breaking and screening are central to symmetron models \citep{HinterbichlerKhoury2010}.
+    \item Matter-dependent local $U(1)$ cosmic strings already occur in the complex symmetron model, and simulations show halo attachment \citep{NezhadsafaviPogosian2025}.
+    \item Environment-dependent string and wall networks have been evolved in relativistic cosmological simulations \citep{ChristiansenAdamekKunz2026}.
+    \item Quantized vortices in bosonic dark matter are established \citep{KainLing2010,BraxValageas2025}.
+    \item Curvature-triggered scalar phases around black holes are established \citep{DonevaYazadjiev2018}.
+    \item Discrete black-hole spectra and degeneracy arguments have a long history \citep{BekensteinMukhanov1995}.
+    \item $\mathbb Z_p$ gauge theories and BF descriptions are standard \citep{KapustinSeiberg2014,GaiottoEtAl2015}.
+\end{itemize}
+
+The proposed novelty is therefore deliberately narrower.  It is the conjunction of the following four statements in one covariant EFT:
+\begin{enumerate}[leftmargin=1.7em]
+    \item high dark-sector trace and/or high curvature can \emph{induce} a hidden Higgs phase rather than restore it;
+    \item the Higgs has charge $p$, leaving a local residual $\mathbb Z_p$ phase rather than a continuous long-range Goldstone sector;
+    \item the same integer $p$ appears in an exact macroscopic holonomy, Eq.~\eqref{eq:AB}; and
+    \item halo and black-hole environments give analytic activation surfaces, Eqs.~\eqref{eq:rG} and \eqref{eq:nfwthreshold}, which can be confronted with astrophysical structure once a defect observable is fixed.
+\end{enumerate}
+
+We have not found, in the literature audited for this draft, a peer-reviewed paper with precisely this combined activation law and residual discrete gauge observable.  This is a \emph{novelty hypothesis}, not proof of priority; a broader dedicated literature search would still be required before submission.
+
+\section{Thermodynamic consistency target}
+
+Calling the sector ``entropic'' should ultimately be justified by state counting.  A minimal consistency check is the following.  Suppose a horizon patch of area $A$ contains $N=A/a_\ast$ independent microscopic cells, each with $p$ accessible states.  Then
+\begin{equation}
+\Omega=p^N,
+\qquad
+S=k_B\ln\Omega
+=k_B\frac{A}{a_\ast}\ln p.
+\end{equation}
+Matching the Bekenstein--Hawking law
+\begin{equation}
+S_{\rm BH}=k_B\frac{A}{4\ell_P^2}
+\end{equation}
+requires
+\begin{equation}
+\boxed{
+a_\ast=4\ell_P^2\ln p.}
+\label{eq:areacell}
+\end{equation}
+Equation~\eqref{eq:areacell} is only a matching condition.  Discrete black-hole area and degeneracy constructions predate this work \citep{BekensteinMukhanov1995}; we do not claim Eq.~\eqref{eq:areacell} as new.  Its value here is diagnostic: a microscopic completion of the $\mathbb Z_p$ sector should explain, not merely fit, any horizon entropy relation.
+
+\section{Hard audit: failure modes}
+
+The model should be abandoned or substantially revised if any of the following occurs.
+
+\begin{enumerate}[leftmargin=1.7em]
+    \item \textbf{Literature collision.}  An existing model is found with the same high-density/curvature activation, charge-$p$ Higgsing, and the same proposed observational channel.
+    \item \textbf{No controlled EFT window.}  Activation requires $|\Geff|/M_G^4\gtrsim1$ or strong coupling before the defect phase is reached.
+    \item \textbf{No viable cosmology.}  Defect energy density, gravitational radiation, or dark-sector scattering exceeds established limits for every parameter region that gives astrophysically relevant activation.
+    \item \textbf{No entropy derivation.}  The $\mathbb Z_p$ degree of freedom remains a generic hidden gauge sector with no independent reason to call it entropic.  In that case the model may still be a dark-sector defect EFT, but the original entropy interpretation should be removed.
+    \item \textbf{No distinctive observable.}  If all effects reduce to an ordinary Nielsen--Olesen string with redefined parameters and the phase in Eq.~\eqref{eq:AB} is inaccessible, the finite arithmetic has no empirical leverage.
+    \item \textbf{Pressure intuition fails.}  If solutions of Eq.~\eqref{eq:pressure} do not exhibit the proposed pressure depression, the ``storm eye'' language must be dropped rather than tuned into existence.
+\end{enumerate}
+
+\section{Concrete next derivations}
+
+The shortest path from framework to a serious paper is not to add more analogies.  It is to complete four calculations:
+
+\begin{enumerate}[leftmargin=1.7em]
+    \item Solve the static cylindrical field equations with spatially varying $m_E^2(r)$ and compute $\rho_E$, radial pressure, azimuthal pressure, and Eq.~\eqref{eq:pressure}.
+    \item Derive the string tension $\mu_E(\rho_D,\Geff)$ and core radius across the activation boundary; determine whether strings are attracted to or repelled from density gradients.  This must be compared directly with the complex-symmetron halo-pinning mechanism.
+    \item Couple a concrete hidden dark-matter probe of unit residual $\mathbb Z_p$ charge and calculate the Aharonov--Bohm scattering cross section and its effect on halo phase space.  This is where $p$ can become measurable rather than symbolic.
+    \item Perform a parameter-space audit including fifth-force avoidance, cosmic-string bounds, dark self-interaction bounds, EFT control, and black-hole activation condition~\eqref{eq:outside}.
+\end{enumerate}
+
+If these calculations yield a nonempty allowed region and a $p$-dependent observable, the project becomes materially stronger.  If they do not, the finite-state entropic-defect hypothesis should be rejected.
+
+\section{Conclusion}
+
+The weather metaphor survives only after being heavily constrained.  Gravity itself is not replaced by atmospheric pressure, and a coordinate ``wind'' is not a new substance.  The technically defensible remnant is a new hidden sector whose environmental phase structure can be described with familiar field theory while retaining one genuinely finite piece of information: a residual $\mathbb Z_p$ gauge holonomy.  The minimal model predicts a curvature activation radius scaling as $M^{1/3}$ for Schwarzschild, a universal density threshold in dark-matter halos, and an exact discrete phase $\exp(2\pi i n/p)$ around defects.  These results are rigorous within the EFT assumptions.  What remains unproved is the central physical interpretation: that this finite-state sector is actually the microscopic entropy structure of spacetime.  That interpretation should be kept only if the next calculations provide an independent entropy derivation and a distinctive observable.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}
