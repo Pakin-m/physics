@@ -3,8 +3,9 @@
 \usepackage{amsmath,amssymb,amsthm,bm}
 \usepackage{microtype}
 \usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage[backend=biber,style=numeric,sorting=none,natbib=true]{biblatex}
+\addbibresource{references.bib}
 \usepackage{enumitem}
 \usepackage{xcolor}
 
@@ -14,10 +15,11 @@
 \newcommand{\mpl}{M_{\rm Pl}}
 \newcommand{\Geff}{\mathcal G}
 \newcommand{\Ddark}{\mathcal D}
+\newcommand{\Pontryagin}{\mathcal P}
 \newcommand{\ZE}{\mathbb Z_p}
 
 \title{Finite-State Entropic Defects in Curved Spacetime:\\
-A Minimal Covariant Effective Framework with Dark-Sector Triggering}
+Curvature, Rotation, and Dark-Sector Triggering}
 \author{Working research draft}
 \date{2 October 2026}
 
@@ -25,7 +27,13 @@ A Minimal Covariant Effective Framework with Dark-Sector Triggering}
 \maketitle
 
 \begin{abstract}
-We formulate a deliberately minimal effective field theory motivated by a ``spacetime weather'' analogy but stripped of coordinate-dependent fluid language.  The proposed new sector is a hidden Abelian gauge theory containing a charge-$p$ Higgs field.  When an invariant environmental mass parameter changes sign, the hidden $U(1)$ is Higgsed to a residual local $\mathbb Z_p$ gauge symmetry and supports quantized flux tubes.  We call these objects \emph{entropic defects} only provisionally: their pressure is defined from a stress tensor, while a genuine thermodynamic entropy interpretation is imposed as an additional consistency target rather than assumed.  The environmental trigger contains two independently testable pieces: a Gauss--Bonnet curvature invariant and the trace of the dark-sector stress tensor.  We derive (i) the exact $\mathbb Z_p$ flux and Aharonov--Bohm selection rule, (ii) the symmetry-breaking threshold, (iii) an analytic activation radius for a Schwarzschild background, and (iv) an analytic halo threshold for an NFW profile.  We also state no-go and collision results that remove several tempting but non-novel formulations: coordinate ``wind'' is not a new field, finite-field elements cannot be ordered as pressures, matter-triggered local $U(1)$ strings already occur in the complex symmetron literature, and curvature-triggered scalarization is established.  The possible novelty is therefore narrow: a density-assisted hidden $U(1)\to\mathbb Z_p$ phase, simultaneously curvature-triggered, whose finite arithmetic survives in an exact topological observable $\exp(2\pi i n/p)$.  We give explicit falsification conditions and do not claim a microscopic theory of quantum gravity.
+We formulate a compact effective field theory motivated by a ``universe weather'' picture but expressed only through covariant quantities.  The new sector is a hidden Abelian gauge theory containing a charge-$p$ Higgs field.  Curvature, rotational curvature, and the dark-sector stress-tensor trace shift the Higgs effective mass.  When the corresponding phase exists, $U(1)$ is Higgsed to a residual local $\mathbb Z_p$ gauge symmetry supporting quantized flux defects.  Periodic arithmetic is therefore retained only through the exact holonomy $\exp(2\pi i n/p)$, while the proposed bulk pressure is derived from the hidden-sector stress tensor.  We distinguish a local negative-mass region from a genuine instability: for Schwarzschild we derive the exact radial spectral problem and a Rayleigh--Ritz sufficient criterion for tachyonic onset.  For Kerr we add a parity-even rotational trigger proportional to the square of the Pontryagin density.  Using the exact Kerr invariants, we derive the slow-spin deformation of the local activation surface,
+\[
+\frac{r_{\rm w}(\theta)}{r_0}=1+\frac{a^2\cos^2\theta}{r_0^2}\left(-\frac72+6\eta_\Omega\right)+O(a^4/r_0^4),
+\qquad
+\eta_\Omega=\frac{\alpha_\Omega m_0^2 M_G^4}{\alpha_G^2M_\Omega^6},
+\]
+so the leading polar deformation changes sign at the mass-independent threshold $\eta_\Omega=7/12$.  We also retain the analytic dark-halo eligibility condition for an NFW profile.  Existing Gauss--Bonnet and Chern--Simons scalarization, environment-dependent defects, and discrete gauge theory make clear that none of these ingredients individually is new.  The novelty hypothesis is the combined finite-state gauge phase with curvature-, rotation-, and dark-environment-dependent activation together with a $p$-dependent topological observable.  The construction remains an EFT research program, not a microscopic theory of quantum gravity.
 \end{abstract}
 
 \section{Scope and guiding constraints}
@@ -40,6 +48,19 @@ Three constraints therefore guide the model.
 \end{enumerate}
 
 The construction should be regarded as an effective field theory (EFT), not as a claim that spacetime is literally a fluid.
+
+
+\subsection{What survives from the weather analogy}
+A single circular orbit is not a spacetime vortex: Schwarzschild spacetime is nonrotating and nevertheless admits circular geodesics.  The analogy becomes mathematically useful only after distinguishing matter circulation from rotational curvature.  For a Newtonian Keplerian continuum,
+\begin{equation}
+v_\phi(r)=\sqrt{\frac{GM}{r}},\qquad
+\Omega=\sqrt{\frac{GM}{r^3}},
+\end{equation}
+and the vertical vorticity is
+\begin{equation}
+\omega_z=\frac1r\frac{\dd}{\dd r}(rv_\phi)=\frac12\Omega.
+\end{equation}
+This is genuine vortex-like \emph{matter} kinematics, as in a disk, not a new law of gravity.  For spacetime itself we instead use curvature invariants.  In particular, the parity-odd Pontryagin density vanishes for Schwarzschild but is generally nonzero for Kerr, providing a covariant rotational-curvature diagnostic.  This separation prevents the motivating ``orbit as tornado'' picture from being promoted into a false identity.
 
 \section{Why finite-field-valued pressure is rejected}
 
@@ -94,6 +115,7 @@ The invariant environmental mass is
 \boxed{
  m_E^2(x)=m_0^2
  -\frac{\alpha_G}{M_G^2}\,\Geff(x)
+ -\frac{\alpha_\Omega}{M_\Omega^6}\,\Pontryagin(x)^2
  -\frac{\alpha_D}{M_D^2}\,\Ddark(x)
 }
 \label{eq:meff}
@@ -101,15 +123,20 @@ The invariant environmental mass is
 with
 \begin{equation}
 \Geff=R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}
--4R_{\mu\nu}R^{\mu\nu}+R^2
+-4R_{\mu\nu}R^{\mu\nu}+R^2,
 \end{equation}
-the Gauss--Bonnet density and
+\begin{equation}
+\Pontryagin=\frac12\epsilon^{\alpha\beta\gamma\delta}
+R^\mu{}_{\nu\gamma\delta}R^\nu{}_{\mu\alpha\beta},
+\end{equation}
+and
 \begin{equation}
 \Ddark\equiv- T^{(D)\mu}{}_{\mu}.
 \end{equation}
+The $\Pontryagin^2$ term is parity even and vanishes in Schwarzschild.  Since $[\Geff]=[\Pontryagin]=M^4$, both $\Geff/M_G^2$ and $\Pontryagin^2/M_\Omega^6$ have mass dimension two.  The latter is a higher-order EFT operator and must remain perturbatively controlled; it is included because it distinguishes rotational curvature without introducing a preferred-frame vector.
 For pressureless dark matter, $\Ddark\simeq\rho_D>0$.
 
-Equation~\eqref{eq:meff} contains two logically distinct hypotheses.  The curvature term is a higher-dimensional gravitational EFT interaction.  The dark term is a \emph{dark-selective} interaction; if it were universal over visible matter it would face strong fifth-force and equivalence-principle constraints.  A microscopic completion could generate the latter through a dark-sector conformal metric $\tilde g^{(D)}_{\mu\nu}=A^2(|H|)g_{\mu\nu}$, whose small-field expansion produces a coupling to the dark stress-tensor trace.
+Equation~\eqref{eq:meff} contains three logically distinct hypotheses.  The Gauss--Bonnet term is a curvature-triggered EFT interaction; the $\Pontryagin^2$ term is a parity-even rotational-curvature trigger; and the dark term is a \emph{dark-selective} interaction.  If the last were universal over visible matter it would face strong fifth-force and equivalence-principle constraints.  A microscopic completion could generate the latter through a dark-sector conformal metric $\tilde g^{(D)}_{\mu\nu}=A^2(|H|)g_{\mu\nu}$, whose small-field expansion produces a coupling to the dark stress-tensor trace.
 
 \subsection{Environmental Higgsing}
 
@@ -136,12 +163,13 @@ The activation criterion is therefore
 \begin{equation}
 \boxed{
 \frac{\alpha_G}{M_G^2}\Geff
++\frac{\alpha_\Omega}{M_\Omega^6}\Pontryagin^2
 +\frac{\alpha_D}{M_D^2}\Ddark
 >m_0^2.
 }
 \label{eq:activation}
 \end{equation}
-This is not yet a defect-formation theorem: it determines where the defect-supporting phase exists.  Actual nucleation also depends on history and boundary conditions.
+This is not yet a defect-formation theorem, nor even a proof of linear instability.  It identifies where the local potential favors the broken phase.  Gradient energy, horizon boundary conditions, and the global spectrum can prevent condensation even when $m_E^2<0$ locally; actual defect nucleation additionally depends on nonlinear history and boundary conditions.
 
 \section{Finite arithmetic as an observable: flux and linking phase}
 
@@ -212,7 +240,7 @@ P_E(r=0)<P_E(r\gg \xi_E)?
 \end{equation}
 For an Abelian-Higgs vortex this inequality is not automatic because scalar potential, gradient, and gauge-field stresses compete.  A numerical vortex solution is therefore a necessary next calculation.
 
-\section{Analytic strong-curvature activation around Schwarzschild}
+\section{Schwarzschild eligibility and the true instability problem}
 
 Curvature-induced scalarization is already established in other scalar theories \citep{DonevaYazadjiev2018}; the calculation here only establishes the threshold scaling of the present model.
 
@@ -220,7 +248,7 @@ For Schwarzschild in geometrized units $G=c=1$,
 \begin{equation}
 \Geff=\frac{48M^2}{r^6}.
 \end{equation}
-Ignoring the dark term, the activation surface $m_E^2=0$ obeys
+Ignoring the dark term, the local eligibility surface $m_E^2=0$ obeys
 \begin{equation}
 m_0^2=\frac{48\alpha_G M^2}{M_G^2 r_G^6}.
 \end{equation}
@@ -256,16 +284,123 @@ The EFT expansion also requires that neglected higher-curvature operators remain
 \begin{equation}
 \frac{|\Geff|}{M_G^4}\ll1
 \end{equation}
-at the activation surface.  Combining with $|\Geff|\sim m_0^2M_G^2/\alpha_G$ gives
+at the local eligibility surface.  Combining with $|\Geff|\sim m_0^2M_G^2/\alpha_G$ gives
 \begin{equation}
 \frac{m_0^2}{\alpha_G M_G^2}\ll1.
 \label{eq:EFTcontrol}
 \end{equation}
 Thus activation can occur inside the EFT regime if $m_0\ll \sqrt{\alpha_G}M_G$.
 
-\section{Dark-halo activation from observable density profiles}
 
-The dark-selective term is phenomenologically more directly connected to the user's original suggestion that hidden mass could predict where defects become possible.  In a weak-curvature halo, Eq.~\eqref{eq:activation} reduces to
+\subsection{Linear spectral test: local negativity is not enough}
+To determine whether the symmetric state $H=0$ actually destabilizes, set $A_\mu=0$ and linearize $H=\epsilon\,\delta H+O(\epsilon^2)$.  In Schwarzschild, decompose
+\begin{equation}
+\delta H=e^{-i\omega t}Y_{\ell m}(\theta,\phi)\frac{u_\ell(r)}{r}.
+\end{equation}
+With $f(r)=1-2M/r$ and $\dd r_*/\dd r=f^{-1}$, the exact linear equation becomes
+\begin{equation}
+\left[-\frac{\dd^2}{\dd r_*^2}+V_\ell(r)\right]u_\ell=\omega^2 u_\ell,
+\label{eq:spectral}
+\end{equation}
+where
+\begin{equation}
+\boxed{
+V_\ell=f\left[
+\frac{\ell(\ell+1)}{r^2}+\frac{2M}{r^3}+m_0^2
+-\frac{48\alpha_GM^2}{M_G^2r^6}
+\right].}
+\label{eq:Vschw}
+\end{equation}
+A tachyonic mode exists when the lowest eigenvalue has $\omega^2<0$.  Thus Eq.~\eqref{eq:rG} is only a local eligibility radius; the spectrum of Eq.~\eqref{eq:spectral} is the correct onset criterion.
+
+The distinction admits a useful variational test.  Define
+\begin{equation}
+x=\frac{r}{2M},\qquad
+\mu=2Mm_0,\qquad
+\gamma=\frac{3\alpha_G}{M_G^2M^2},\qquad f=1-\frac1x.
+\end{equation}
+Then $(2M)^2V_\ell=f B_\ell$ with
+\begin{equation}
+B_\ell(x)=\frac{\ell(\ell+1)}{x^2}+\frac1{x^3}+\mu^2-\frac{\gamma}{x^6}.
+\end{equation}
+For any admissible trial function $u$, the Rayleigh quotient is
+\begin{equation}
+\boxed{
+\mathcal R[u]=
+\frac{\displaystyle\int_1^\infty\!\dd x\,
+\left[f|u'|^2+B_\ell|u|^2\right]}
+{\displaystyle\int_1^\infty\!\dd x\,|u|^2/f}.}
+\label{eq:rayleigh}
+\end{equation}
+If $\mathcal R[u]<0$ for even one trial function, the lowest mode is necessarily unstable.  The accompanying check script evaluates Eq.~\eqref{eq:rayleigh}; for example, for $\ell=0$, $\mu=0.2$, $\gamma=12$, and $u=(x-1)e^{-2(x-1)}$, it finds $\mathcal R\simeq-6.89\times10^{-2}$.  This does not locate the exact critical coupling, but it demonstrates a parameter point where the model passes a genuine global instability test rather than only the local sign test.
+
+\section{Rotational curvature: a covariant ``tornado'' variable}
+Spin-triggered black-hole scalarization is already established in Gauss--Bonnet models, and quadratic couplings to the Pontryagin density have also been studied \citep{HerdeiroEtAl2021,DonevaCollodelYazadjiev2022,GaoHuangLiu2019}.  Rotation is therefore not a novelty claim.  Its role here is to sharpen the weather-inspired trigger while retaining covariance and parity symmetry.
+
+For Kerr in Boyer--Lindquist coordinates, define
+\begin{equation}
+\rho^2=r^2+a^2\cos^2\theta.
+\end{equation}
+Because Kerr is Ricci flat, the Gauss--Bonnet density equals the Kretschmann scalar,
+\begin{equation}
+\Geff_{\rm K}=
+\frac{48M^2\left(r^6-15a^2r^4c^2+15a^4r^2c^4-a^6c^6\right)}{\rho^{12}},
+\qquad c\equiv\cos\theta,
+\label{eq:GKerr}
+\end{equation}
+and the Pontryagin density is, up to the orientation convention,
+\begin{equation}
+\Pontryagin_{\rm K}=
+-\frac{96aM^2rc\left(r^2-3a^2c^2\right)\left(3r^2-a^2c^2\right)}{\rho^{12}}.
+\label{eq:PKerr}
+\end{equation}
+Equation~\eqref{eq:PKerr} is odd across the equatorial plane and vanishes for $a=0$; its square is parity even.  These Kerr invariants and Pontryagin-based scalar couplings are standard \citep{GaoHuangLiu2019,ZhouChenJing2021}; the new question is what they do when embedded in the finite-state defect sector.
+
+Ignoring the dark term, the local weather surface is defined by
+\begin{equation}
+m_0^2-\frac{\alpha_G}{M_G^2}\Geff_{\rm K}
+-\frac{\alpha_\Omega}{M_\Omega^6}\Pontryagin_{\rm K}^2=0.
+\label{eq:kerrweather}
+\end{equation}
+For slow rotation,
+\begin{align}
+\Geff_{\rm K}&=\frac{48M^2}{r^6}
+\left[1-21\frac{a^2c^2}{r^2}+O(a^4/r^4)\right],\\
+\Pontryagin_{\rm K}^2&=\frac{82944M^4a^2c^2}{r^{14}}+O(a^4/r^{16}).
+\end{align}
+Let
+\begin{equation}
+r_0=\left(\frac{48\alpha_GM^2}{m_0^2M_G^2}\right)^{1/6}
+\end{equation}
+be the Schwarzschild local radius.  Solving Eq.~\eqref{eq:kerrweather} perturbatively gives
+\begin{equation}
+\boxed{
+\frac{r_{\rm w}(\theta)}{r_0}
+=1+\frac{a^2\cos^2\theta}{r_0^2}
+\left(-\frac72+6\eta_\Omega\right)
++O(a^4/r_0^4),}
+\label{eq:weatherdeform}
+\end{equation}
+where
+\begin{equation}
+\boxed{
+\eta_\Omega\equiv
+\frac{\alpha_\Omega m_0^2M_G^4}{\alpha_G^2M_\Omega^6}.}
+\label{eq:etaOmega}
+\end{equation}
+The black-hole mass cancels from $\eta_\Omega$.  Consequently the sign of the leading polar deformation is controlled by a universal EFT ratio:
+\begin{equation}
+\eta_\Omega>\frac7{12}
+\quad\Longrightarrow\quad
+r_{\rm w}(0)>r_0
+\quad\text{at leading order},
+\label{eq:shapecriterion}
+\end{equation}
+while $\eta_\Omega<7/12$ gives the opposite polar shift.  This is a concrete weather-inspired prediction: rotation does not merely ``look like'' a tornado; it deforms an invariant phase-eligibility surface in a calculable way.  Equation~\eqref{eq:weatherdeform} remains a local criterion.  The actual Kerr onset requires solving the two-dimensional nonseparable spectral problem associated with Eq.~\eqref{eq:kerrweather}.
+
+\section{Dark-halo eligibility from observable density profiles}
+
+The dark-selective term implements the motivating possibility that hidden mass can shift where defects become dynamically possible.  In a weak-curvature halo, Eq.~\eqref{eq:activation} reduces to
 \begin{equation}
 \Ddark(r)>\rho_c,
 \qquad
@@ -281,7 +416,7 @@ Take an NFW profile
 \rho_D(r)=\frac{\rho_s}{x(1+x)^2},
 \qquad x\equiv\frac{r}{r_s}.
 \end{equation}
-The activation radius $r_c=r_sx_c$ satisfies
+The local eligibility radius $r_c=r_sx_c$ satisfies
 \begin{equation}
 \frac{\rho_s}{x_c(1+x_c)^2}=\rho_c,
 \end{equation}
@@ -291,7 +426,7 @@ so
 x_c(1+x_c)^2=\frac{\rho_s}{\rho_c}.}
 \label{eq:nfwthreshold}
 \end{equation}
-For each halo, $(\rho_s,r_s)$ may be inferred from dynamical or lensing analyses.  A universal parameter $\rho_c$ then predicts the radius inside which the discrete Higgs phase is supported.  The model is falsified if a single universal parameter set cannot consistently describe the chosen class of systems once a concrete observable of the defect sector is specified.
+For each halo, $(\rho_s,r_s)$ may be inferred from dynamical or lensing analyses.  A universal parameter $\rho_c$ then predicts the radius inside which the local potential favors the discrete Higgs phase.  The model is falsified if a single universal parameter set cannot consistently describe the chosen class of systems once a concrete observable of the defect sector is specified.
 
 Equation~\eqref{eq:nfwthreshold} predicts an \emph{eligible region}, not a deterministic number of strings.  Defect abundance depends on phase-transition history, correlation length, and annihilation.  Claiming otherwise would overstate the theory.
 
@@ -305,17 +440,19 @@ The individual ingredients have substantial precedent:
     \item Matter-dependent local $U(1)$ cosmic strings already occur in the complex symmetron model, and simulations show halo attachment \citep{NezhadsafaviPogosian2025}.
     \item Environment-dependent string and wall networks have been evolved in relativistic cosmological simulations \citep{ChristiansenAdamekKunz2026}.
     \item Quantized vortices in bosonic dark matter are established \citep{KainLing2010,BraxValageas2025}.
-    \item Curvature-triggered scalar phases around black holes are established \citep{DonevaYazadjiev2018}.
+    \item Curvature- and spin-triggered scalar phases around black holes are established, including Kerr scalarization in Gauss--Bonnet models \citep{DonevaYazadjiev2018,HerdeiroEtAl2021,DonevaCollodelYazadjiev2022,LaiEtAl2026}.
+    \item Quadratic scalar couplings to the Kerr Pontryagin density can also generate tachyonic instabilities \citep{GaoHuangLiu2019}.
     \item Discrete black-hole spectra and degeneracy arguments have a long history \citep{BekensteinMukhanov1995}.
     \item $\mathbb Z_p$ gauge theories and BF descriptions are standard \citep{KapustinSeiberg2014,GaiottoEtAl2015}.
 \end{itemize}
 
-The proposed novelty is therefore deliberately narrower.  It is the conjunction of the following four statements in one covariant EFT:
+The proposed novelty is therefore deliberately narrower.  It is the conjunction of the following statements in one covariant EFT:
 \begin{enumerate}[leftmargin=1.7em]
-    \item high dark-sector trace and/or high curvature can \emph{induce} a hidden Higgs phase rather than restore it;
+    \item high dark-sector trace and/or curvature can \emph{induce} a hidden Higgs phase rather than restore it;
+    \item rotational curvature enters through a parity-even $\Pontryagin^2$ trigger, producing the analytic slow-spin deformation in Eq.~\eqref{eq:weatherdeform};
     \item the Higgs has charge $p$, leaving a local residual $\mathbb Z_p$ phase rather than a continuous long-range Goldstone sector;
     \item the same integer $p$ appears in an exact macroscopic holonomy, Eq.~\eqref{eq:AB}; and
-    \item halo and black-hole environments give analytic activation surfaces, Eqs.~\eqref{eq:rG} and \eqref{eq:nfwthreshold}, which can be confronted with astrophysical structure once a defect observable is fixed.
+    \item the onset question is separated cleanly into local eligibility surfaces and a global spectral instability, Eq.~\eqref{eq:spectral}, so the model is not allowed to identify $m_E^2<0$ with defect formation by fiat.
 \end{enumerate}
 
 We have not found, in the literature audited for this draft, a peer-reviewed paper with precisely this combined activation law and residual discrete gauge observable.  This is a \emph{novelty hypothesis}, not proof of priority; a broader dedicated literature search would still be required before submission.
@@ -347,7 +484,8 @@ The model should be abandoned or substantially revised if any of the following o
 
 \begin{enumerate}[leftmargin=1.7em]
     \item \textbf{Literature collision.}  An existing model is found with the same high-density/curvature activation, charge-$p$ Higgsing, and the same proposed observational channel.
-    \item \textbf{No controlled EFT window.}  Activation requires $|\Geff|/M_G^4\gtrsim1$ or strong coupling before the defect phase is reached.
+    \item \textbf{No controlled EFT window.}  Eligibility requires $|\Geff|/M_G^4\gtrsim1$, $|\Pontryagin|/M_\Omega^4\gtrsim1$, or strong coupling before the defect phase is reached.  In particular the $\Pontryagin^2$ operator is high dimension and must not be treated nonperturbatively beyond its cutoff.
+    \item \textbf{No global instability.}  If the spectral problem has no unstable mode anywhere in the EFT-controlled region, the local negative-mass surfaces are physically insufficient.
     \item \textbf{No viable cosmology.}  Defect energy density, gravitational radiation, or dark-sector scattering exceeds established limits for every parameter region that gives astrophysically relevant activation.
     \item \textbf{No entropy derivation.}  The $\mathbb Z_p$ degree of freedom remains a generic hidden gauge sector with no independent reason to call it entropic.  In that case the model may still be a dark-sector defect EFT, but the original entropy interpretation should be removed.
     \item \textbf{No distinctive observable.}  If all effects reduce to an ordinary Nielsen--Olesen string with redefined parameters and the phase in Eq.~\eqref{eq:AB} is inaccessible, the finite arithmetic has no empirical leverage.
@@ -356,22 +494,25 @@ The model should be abandoned or substantially revised if any of the following o
 
 \section{Concrete next derivations}
 
-The shortest path from framework to a serious paper is not to add more analogies.  It is to complete four calculations:
-
+The shortest path from framework to a serious paper is now sharply defined:
 \begin{enumerate}[leftmargin=1.7em]
-    \item Solve the static cylindrical field equations with spatially varying $m_E^2(r)$ and compute $\rho_E$, radial pressure, azimuthal pressure, and Eq.~\eqref{eq:pressure}.
-    \item Derive the string tension $\mu_E(\rho_D,\Geff)$ and core radius across the activation boundary; determine whether strings are attracted to or repelled from density gradients.  This must be compared directly with the complex-symmetron halo-pinning mechanism.
-    \item Couple a concrete hidden dark-matter probe of unit residual $\mathbb Z_p$ charge and calculate the Aharonov--Bohm scattering cross section and its effect on halo phase space.  This is where $p$ can become measurable rather than symbolic.
-    \item Perform a parameter-space audit including fifth-force avoidance, cosmic-string bounds, dark self-interaction bounds, EFT control, and black-hole activation condition~\eqref{eq:outside}.
+    \item Solve Eq.~\eqref{eq:spectral} for the Schwarzschild critical curve $\gamma_c(\mu)$ and then solve the full Kerr $(r,\theta)$ eigenvalue problem.  The slow-spin expression~\eqref{eq:weatherdeform} should emerge as the local geometric limit, not replace the spectrum.
+    \item Solve the nonlinear Abelian-Higgs equations in an inhomogeneous background and compute $\rho_E$, radial pressure, azimuthal pressure, string tension, and whether a genuine low-pressure core exists.
+    \item Determine whether the $\mathbb Z_p$ holonomy produces a measurable $p$-dependent Aharonov--Bohm scattering or transport effect for a specified hidden-matter probe.  Without this step, finite arithmetic remains formal.
+    \item Combine lensing-inferred halo profiles with the global field equation rather than only Eq.~\eqref{eq:nfwthreshold}, testing whether one universal parameter set predicts where the hidden phase can actually condense.
+    \item Perform a parameter-space audit including fifth-force avoidance, defect abundance, dark self-interaction bounds, EFT control, black-hole horizon accessibility, and existing scalarization/ringdown constraints.
 \end{enumerate}
 
-If these calculations yield a nonempty allowed region and a $p$-dependent observable, the project becomes materially stronger.  If they do not, the finite-state entropic-defect hypothesis should be rejected.
+A journal-level result would require at least the first two calculations plus one distinctive observable.  An arXiv research note could reasonably precede the full nonlinear program only if the spectral critical curve and the Kerr deformation survive independent checking.
 
 \section{Conclusion}
 
-The weather metaphor survives only after being heavily constrained.  Gravity itself is not replaced by atmospheric pressure, and a coordinate ``wind'' is not a new substance.  The technically defensible remnant is a new hidden sector whose environmental phase structure can be described with familiar field theory while retaining one genuinely finite piece of information: a residual $\mathbb Z_p$ gauge holonomy.  The minimal model predicts a curvature activation radius scaling as $M^{1/3}$ for Schwarzschild, a universal density threshold in dark-matter halos, and an exact discrete phase $\exp(2\pi i n/p)$ around defects.  These results are rigorous within the EFT assumptions.  What remains unproved is the central physical interpretation: that this finite-state sector is actually the microscopic entropy structure of spacetime.  That interpretation should be kept only if the next calculations provide an independent entropy derivation and a distinctive observable.
+The weather metaphor is retained only where it generates invariant structure.  Circular matter flow can be vortex-like, but an orbit is not itself a spacetime tornado.  Rotational spacetime structure is instead encoded through Kerr curvature invariants.  The resulting compact EFT contains a charge-$p$ hidden Higgs field whose phase is influenced by Gauss--Bonnet curvature, parity-even rotational curvature $\Pontryagin^2$, and a dark-selective stress-tensor trace.  Its finite content survives as the exact $\mathbb Z_p$ holonomy $\exp(2\pi i n/p)$.
 
-\bibliographystyle{unsrtnat}
-\bibliography{references}
+Two substantive corrections distinguish this version from a metaphor-driven model.  First, $m_E^2<0$ is only a local eligibility condition; the Schwarzschild onset is governed by the spectral operator in Eq.~\eqref{eq:spectral}, with Eq.~\eqref{eq:rayleigh} providing a rigorous sufficient test for instability.  Second, Kerr rotation produces the explicit slow-spin deformation~\eqref{eq:weatherdeform}, whose leading polar sign flips at the mass-independent coupling ratio $\eta_\Omega=7/12$.  These are calculable statements, not analogical identifications.
+
+The project is still not a completed theory of spacetime entropy.  Its strongest present status is a falsifiable hidden-sector EFT research program with a narrow novelty hypothesis.  The decisive next step is to compute the true Schwarzschild/Kerr instability boundaries and nonlinear defect solutions; if those do not yield a controlled parameter window and a $p$-dependent observable, the ``entropic weather'' interpretation should be abandoned.
+
+\printbibliography
 
 \end{document}
